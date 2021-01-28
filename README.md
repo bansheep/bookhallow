@@ -1,2 +1,3 @@
-# Library
+# Bookhallow
+Gamified Reading Tracker
 
