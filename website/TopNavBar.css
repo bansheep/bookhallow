@@ -1,0 +1,38 @@
+﻿.Topul {
+    margin: 0;
+    background-color: #343434;
+}
+
+.Topli1 {
+    text-decoration: none;
+    display: inline-block;
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: .9rem;
+}
+
+.Topli2 {
+    text-decoration: none;
+    display: inline-block;
+    font-family: Tahoma;
+    font-size: .9rem;
+    float: right;
+}
+
+a:link, a:visited {
+    color: #FFFFFF;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #ffbd59;
+    color: white;
+}
+
+a:active {
+    background-color: #ffbd59;
+    color: #343434;
+}

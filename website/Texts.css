@@ -1,0 +1,28 @@
+﻿.mainTitle {
+    font-family:'Libre Baskerville';
+    font-size:3rem;
+    color: #FFFFFF;
+    display: block;
+}
+
+.mainSubTitle {
+    font-family: 'Share Tech';
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    display: block;
+}
+
+.Headline {
+    font-family: 'Libre Baskerville';
+    font-size: 2rem;
+    color: #000000;
+    display: block;
+}
+
+.BodyText {
+    font-family: 'Tahoma';
+    font-size: rem;
+    color: #000000;
+    display: block;
+    padding: 0px 50px 0px 50px;
+}
