@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import axios from "axios";
-const md5 = require("md5");
 
 function Register(){
   const[registerItem, setRegisterItem] = useState({
@@ -56,14 +55,14 @@ function Register(){
        console.log("Form submitted");
        console.log("Username: " + registerItem.username);
        console.log("Email: " + registerItem.email);
-       console.log("Password: " + md5(registerItem.password));
-       console.log("Password repeat: " + md5(registerItem.passwordRepeat));
+       console.log("Password: " + registerItem.password);
+       console.log("Password repeat: " + registerItem.passwordRepeat);
 
        if(registerItem.password === registerItem.passwordRepeat){
          const newAccount ={
            username: registerItem.username,
            email: registerItem.email,
-           password: md5(registerItem.password)
+           password: registerItem.password
          }
 
          //axios.post('http://localhost:4000/acounts/addAccount', newAccount)
