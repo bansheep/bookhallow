@@ -1,86 +1,40 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import axios from "axios";
-const md5 = require("md5");
+import {useHistory} from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 function Register(){
-  const[registerItem, setRegisterItem] = useState({
-    username: "",
-    email: "",
-    password: "",
-    passwordRepeat: ""
-  });
+  const[username, setUsername] = useState("");
+  const[email, setEmail] = useState("");
+  const[password, setPassword] = useState("");
+  const[passwordVerify, setPasswordVerify] = useState("");
+  const {getLoggedIn} = useContext(AuthContext);
 
- function onChangeUsername(event){
-   const {value} = event.target;
-   setRegisterItem((prevInfo) => {
-      return{
-      ...prevInfo,
-      username: value
-      };
-    });
-  }
+  const history = useHistory();
 
-  function onChangeEmail(event){
-    const {value} = event.target;
-    setRegisterItem((prevInfo) => {
-       return{
-       ...prevInfo,
-       email: value
-       };
-     });
-   }
+  async function register(event){
+        event.preventDefault();
 
-   function onChangePassword(event){
-     const {value} = event.target;
-     setRegisterItem((prevInfo) => {
-        return{
-        ...prevInfo,
-        password: value
-        };
-      });
-    }
-
-    function onChangePasswordRepeat(event){
-      const {value} = event.target;
-      setRegisterItem((prevInfo) => {
-         return{
-         ...prevInfo,
-         passwordRepeat: value
-         };
-       });
-     }
-
-     function onSubmit(event){
-       event.preventDefault();
-
+     try{
        console.log("Form submitted");
-       console.log("Username: " + registerItem.username);
-       console.log("Email: " + registerItem.email);
-       console.log("Password: " + md5(registerItem.password));
-       console.log("Password repeat: " + md5(registerItem.passwordRepeat));
+       console.log("Username: " + username);
+       console.log("Email: " + email);
+       console.log("Password: " + password);
+       console.log("Password repeat: " + passwordVerify);
 
-       if(registerItem.password === registerItem.passwordRepeat){
-         const newAccount ={
-           username: registerItem.username,
-           email: registerItem.email,
-           password: md5(registerItem.password)
-         }
+       const newAccount = {
+         username,
+         email,
+         password,
+         passwordVerify
+       };
 
-         //axios.post('http://localhost:4000/acounts/addAccount', newAccount)
-        //    .then(res => console.log(res.data));
-
-          setRegisterItem({
-            username: "",
-            email: "",
-            password: "",
-            passwordRepeat: ""
-          });
-
-
-       }else{
-         console.log("Passwords do not match!");
-       }
-     }
+      await axios.post("http://localhost:5000/auth/", newAccount);
+      await getLoggedIn();
+      history.push("/account");
+    }
+    catch(err){ console.error(err); }
+  }
 
   return(
     <div>
@@ -89,40 +43,40 @@ function Register(){
       <h3 className="mainSubTitle">Start your journey</h3>
       <a className="bodyTextLight nav-link" href="/login">Already Registered?</a>
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={register}>
         <div className="form-group">
             <input type="text"
                 className="form-control"
                 placeholder="username"
-                value={registerItem.username}
-                onChange={onChangeUsername}
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
             />
         </div>
 
         <div className="form-group">
-            <input type="text"
+            <input type="email"
                 className="form-control"
                 placeholder="email"
-                value={registerItem.email}
-                onChange={onChangeEmail}
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
             />
         </div>
 
         <div className="form-group">
-            <input type="text"
+            <input type="password"
                 className="form-control"
                 placeholder="password"
-                value={registerItem.password}
-                onChange={onChangePassword}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
             />
         </div>
 
         <div className="form-group">
-            <input type="text"
+            <input type="password"
                 className="form-control"
                 placeholder="repeat password"
-                value={registerItem.passwordRepeat}
-                onChange={onChangePasswordRepeat}
+                onChange={(e) => setPasswordVerify(e.target.value)}
+                value={passwordVerify}
             />
         </div>
 
