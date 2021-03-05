@@ -1,21 +1,26 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const bookSchema = new Schema({
-    _id: Number,
-    title: String,
-    authorFirst: String,
-    authorLast: String,
-    authorSuffix: String,
-    additionalAuthors: String,
-    publisher: String,
-    originalYear: Number,
-    publishedYear: Number,
-    binding: String,
-    numPages: Number,
-    isbn: Number,
-    isbn13: Number,
-    image:String
+const bookSchema = new mongoose.Schema({
+    title:{
+       type: String,
+       required: true
+    }
 });
 
-module.exports = mongoose.model('Book', bookSchema);
+// const bookSchema = new mongoose.Schema({
+//     title: String,
+//     authorFirst: String,
+//     authorLast: String,
+//     authorSuffix: String,
+//     additionalAuthors: String,
+//     publisher: String,
+//     originalYear: Number,
+//     publishedYear: Number,
+//     binding: String,
+//     numPages: Number,
+//     isbn: Number,
+//     isbn13: Number,
+//     image:String
+// });
+
+module.exports = Book = mongoose.model('Book', bookSchema);

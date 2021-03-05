@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 // set up server
@@ -8,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('Server started on port: ' + PORT));
 
 app.use(express.json());
+app.use(cookieParser());
 
 // connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/bookhallowDB", {
@@ -22,13 +24,8 @@ connection.once('open', function(){
 
 
 // set up routes
-
-app.use("/auth", require("./routers/userRouter"))
-
-// CRUD
-app.get("/test", (req, res) => {
-  res.send("It works!");
-});
+app.use("/auth", require("./routers/userRouter"));
+app.use("/book", require("./routers/bookRouter"));
 
 
 

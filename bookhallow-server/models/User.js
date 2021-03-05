@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true
    }
-})
+});
 //
 // let userSchema = new Schema ({
 //     _id: Number,
