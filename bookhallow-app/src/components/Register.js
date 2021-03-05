@@ -3,80 +3,32 @@ import axios from "axios";
 
 
 function Register(){
-  const[registerItem, setRegisterItem] = useState({
-    username: "",
-    email: "",
-    password: "",
-    password_confirmation: ""
-  });
+  const[username, setUsername] = useState("");
+  const[email, setEmail] = useState("");
+  const[password, setPassword] = useState("");
+  const[passwordVerify, setPasswordVerify] = useState("");
 
- function onChangeUsername(event){
-   const {value} = event.target;
-   setRegisterItem((prevInfo) => {
-      return{
-      ...prevInfo,
-      username: value
-      };
-    });
-  }
+  async function register(event){
+        event.preventDefault();
 
-  function onChangeEmail(event){
-    const {value} = event.target;
-    setRegisterItem((prevInfo) => {
-       return{
-       ...prevInfo,
-       email: value
-       };
-     });
-   }
-
-   function onChangePassword(event){
-     const {value} = event.target;
-     setRegisterItem((prevInfo) => {
-        return{
-        ...prevInfo,
-        password: value
-        };
-      });
-    }
-
-    function onChangePasswordRepeat(event){
-      const {value} = event.target;
-      setRegisterItem((prevInfo) => {
-         return{
-         ...prevInfo,
-         password_confirmation: value
-         };
-       });
-     }
-
-     function onSubmit(event){
-       event.preventDefault();
-
+     try{
        console.log("Form submitted");
-       console.log("Username: " + registerItem.username);
-       console.log("Email: " + registerItem.email);
-       console.log("Password: " + registerItem.password);
-       console.log("Password repeat: " + registerItem.password_confirmation);
+       console.log("Username: " + username);
+       console.log("Email: " + email);
+       console.log("Password: " + password);
+       console.log("Password repeat: " + passwordVerify);
 
        const newAccount = {
-         username: registerItem.username,
-         email: registerItem.email,
-         password: registerItem.password,
-         password_confirmation: registerItem.password_confirmation
-       }
+         username,
+         email,
+         password,
+         passwordVerify
+       };
 
-
-       axios.post('http://localhost:5000/signup', newAccount)
-            .then(res => console.log(res.data));
-
-        setRegisterItem({
-          username: "",
-          email: "",
-          password: "",
-          password_confirmation: ""
-        });
-     }
+      await axios.post("http://localhost:5000/auth/", newAccount);
+    }
+    catch(err){ console.error(err); }
+  }
 
   return(
     <div>
@@ -85,40 +37,40 @@ function Register(){
       <h3 className="mainSubTitle">Start your journey</h3>
       <a className="bodyTextLight nav-link" href="/login">Already Registered?</a>
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={register}>
         <div className="form-group">
             <input type="text"
                 className="form-control"
                 placeholder="username"
-                value={registerItem.username}
-                onChange={onChangeUsername}
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
             />
         </div>
 
         <div className="form-group">
-            <input type="text"
+            <input type="email"
                 className="form-control"
                 placeholder="email"
-                value={registerItem.email}
-                onChange={onChangeEmail}
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
             />
         </div>
 
         <div className="form-group">
-            <input type="text"
+            <input type="password"
                 className="form-control"
                 placeholder="password"
-                value={registerItem.password}
-                onChange={onChangePassword}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
             />
         </div>
 
         <div className="form-group">
-            <input type="text"
+            <input type="password"
                 className="form-control"
                 placeholder="repeat password"
-                value={registerItem.password_confirmation}
-                onChange={onChangePasswordRepeat}
+                onChange={(e) => setPasswordVerify(e.target.value)}
+                value={passwordVerify}
             />
         </div>
 
