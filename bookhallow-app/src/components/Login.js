@@ -1,13 +1,18 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 function Login(){
   const[username, setUsername] = useState("");
   const[password, setPassword] = useState("");
+  const {getLoggedIn} = useContext(AuthContext);
+
+  const history = useHistory();
 
 
   async function login(event){
-        event.preventDefault();
+    event.preventDefault();
 
      try{
        console.log("Form submitted");
@@ -20,6 +25,9 @@ function Login(){
        };
 
       await axios.post("http://localhost:5000/auth/login", loginData);
+      await getLoggedIn();
+      history.push("/account");
+
     }
     catch(err){ console.error(err); }
   }
