@@ -6,7 +6,7 @@ function Register(){
     username: "",
     email: "",
     password: "",
-    passwordRepeat: ""
+    password_confirmation: ""
   });
 
  function onChangeUsername(event){
@@ -44,7 +44,7 @@ function Register(){
       setRegisterItem((prevInfo) => {
          return{
          ...prevInfo,
-         passwordRepeat: value
+         password_confirmation: value
          };
        });
      }
@@ -56,29 +56,25 @@ function Register(){
        console.log("Username: " + registerItem.username);
        console.log("Email: " + registerItem.email);
        console.log("Password: " + registerItem.password);
-       console.log("Password repeat: " + registerItem.passwordRepeat);
+       console.log("Password repeat: " + registerItem.password_confirmation);
 
-       if(registerItem.password === registerItem.passwordRepeat){
-         const newAccount ={
-           username: registerItem.username,
-           email: registerItem.email,
-           password: registerItem.password
-         }
-
-         //axios.post('http://localhost:4000/acounts/addAccount', newAccount)
-        //    .then(res => console.log(res.data));
-
-          setRegisterItem({
-            username: "",
-            email: "",
-            password: "",
-            passwordRepeat: ""
-          });
-
-
-       }else{
-         console.log("Passwords do not match!");
+       const newAccount = {
+         username: registerItem.username,
+         email: registerItem.email,
+         password: registerItem.password,
+         password_confirmation: registerItem.password_confirmation
        }
+
+
+       axios.post('http://localhost:5000/signup', newAccount)
+            .then(res => console.log(res.data));
+
+        setRegisterItem({
+          username: "",
+          email: "",
+          password: "",
+          password_confirmation: ""
+        });
      }
 
   return(
@@ -120,7 +116,7 @@ function Register(){
             <input type="text"
                 className="form-control"
                 placeholder="repeat password"
-                value={registerItem.passwordRepeat}
+                value={registerItem.password_confirmation}
                 onChange={onChangePasswordRepeat}
             />
         </div>

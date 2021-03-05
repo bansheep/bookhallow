@@ -1,91 +1,91 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
 const mongoose = require('mongoose');
-const ejs = require("ejs");
+require('dotenv').config();
 
+// set up server
 const app = express();
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log('Server started on port: ' + PORT));
 
-const port = 5000;
+app.use(express.json());
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-//app.set('view engine', 'ejs');
-//app.use(express.static("../app/public"));
-
+// connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/bookhallowDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+const connection = mongoose.connection;
 
-const bookSchema = {
-    _id: Number,
-    title: String,
-    authorFirst: String,
-    authorLast: String,
-    authorSuffix: String,
-    additionalAuthors: String,
-    publisher: String,
-    originalYear: Number,
-    publishedYear: Number,
-    binding: String,
-    numPages: Number,
-    isbn: Number,
-    isbn13: Number,
-    image:String
-};
-const Book = mongoose.model("Book", bookSchema);
-
-const userSchema = {
-    _id: Number,
-    username: String,
-    password: String,
-    characterClass: String,
-    xp: Number,
-    hitPoints: Number,
-    level: Number,
-    skills: {type:Array, "default" : []},
-    coins: Number,
-    modifiers: {type:Array, "default" : []},
-    armor: {type:Array, "default" : []},
-    bookShelves: {type:Array, "default" : []},
-    challenges: {type:Array, "default" : []},
-    friends: {type:Array, "default" : []},
-}
-const User = mongoose.model("User", userSchema);
-
-const inventorySchema = {
-    _userId: Number,
-    armor: {type:Array, "default" : []},
-    potions: {type:Array, "default" : []},
-    special: {type:Array, "default" : []},
-    pets: {type:Array, "default" : []},
-}
-const Inventory = mongoose.model("Inventory", inventorySchema);
-
-const userBookSchema ={
-    _bookId: Number,
-    _userId: Number,
-    rating: Number,
-    dateAdded: Date,
-    datesRead: {type: Array, "default":[]},
-    shelves: {type: Array, "default":[]},
-    challenges: {type: Array, "default":[]},
-}
-const UserBook = mongoose.model("UserBook", userBookSchema);
+connection.once('open', function(){
+    console.log("MongoDB database connection successfully established.")
+})
 
 
-app.route("/books") // Get route that fetches all bookSchema
-  .get(function(req, res) {
-    Book.find(function(err, foundBooks) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(foundBooks);
-      }
-    });
+// set up routes
+
+app.use("/auth", require("./routers/userRouter"))
+
+// CRUD
+app.get("/test", (req, res) => {
+  res.send("It works!");
 });
 
-app.get("/", (req,res)=> res.send("Hello World!"));
-app.listen(port, () => console.log("Listening on port " + port) );
+
+
+// const mongoose = require('mongoose');
+// const cors = require('cors');
+// const bodyParser = require('body-parser');
+//
+//
+// const userRoutes = express.Router();
+//
+// let User = require('./models/User');
+//
+// //import routes
+// const authRoutes = require('./routes/auth');
+//
+
+//
+
+//
+// //middewares
+// app.use(bodyParser.json());
+//
+// app.use(cors());
+//
+// //routes middleware////
+// app.use('/', authRoutes);
+//
+// app.route("/books") // Get route that fetches all bookSchema
+//   .get(function(req, res) {
+//     Book.find(function(err, foundBooks) {
+//       if (err) {
+//         res.send(err);
+//       } else {
+//         res.send(foundBooks);
+//       }
+//     });
+// });
+//
+// app.route("/addAccount")
+// .post(function(req,res){
+//   let user = new User(req.body);
+//
+//   user.save()
+//       .then(user => {
+//         res.status(200).json({'user': 'user added successfully'})
+//       })
+//       .catch(err=> {
+//         res.status(400).send('adding new user failed');
+//       });
+// });
+//
+// app.route('/').get(function(req, res){
+//     User.find(function(err, users){
+//         if(err){
+//             console.log(err);
+//         }else{
+//             res.json(users);
+//         }
+//     });
+// });
