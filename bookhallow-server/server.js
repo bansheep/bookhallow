@@ -2,7 +2,24 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
+let bodyParser = require('body-parser');
+let book = require('./routers/bookRouter')
+let config = require('config'); //we load the db location from the JSON files
 require('dotenv').config();
+
+
+
+// connect to MongoDB
+mongoose.connect(config.DBHost, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+const connection = mongoose.connection;
+
+connection.once('open', function(){
+    console.log("MongoDB database connection successfully established.")
+})
+
 
 // set up server
 const app = express();
@@ -16,23 +33,23 @@ app.use(cors({
   credentials: true
 }));
 
-// connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/bookhallowDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-const connection = mongoose.connection;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
 
-connection.once('open', function(){
-    console.log("MongoDB database connection successfully established.")
-})
 
 
 // set up routes
 app.use("/auth", require("./routers/userRouter"));
-app.use("/book", require("./routers/bookRouter"));
+//app.use("/book", require("./routers/bookRouter"));
 
-
+app.route("/book")
+    .get(book.getBooks)
+    .post(book.postBook);
+app.route("/book/:id")
+    .get(book.getBook)
+    .delete(book.deleteBook)
+    .put(book.updateBook);
 
 // const mongoose = require('mongoose');
 // const cors = require('cors');
@@ -91,3 +108,6 @@ app.use("/book", require("./routers/bookRouter"));
 //         }
 //     });
 // });
+
+
+module.exports = app; // for testing

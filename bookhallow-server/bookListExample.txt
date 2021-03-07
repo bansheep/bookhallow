@@ -1,0 +1,319 @@
+{
+  "title": "Harrow the Ninth",
+  "authorFirst": "Tamsyn",
+  "authorLast": "Muir",
+  "publisher": "Tor.com",
+  "series": "The Locked Tomb",
+  "seriesNun" : 2,
+  "originalYear": 2020,
+  "publishedYear": 2020,
+  "bindingType": "Hardcover",
+  "length": 512,
+  "isbn":1250313228,
+  "isbn13": 9781250313225
+}
+
+{
+  "title": "Velvet Was the Night",
+  "authorFirst": "Silvia",
+  "authorLast": "Moreno-Garcia",
+  "publisher": "Del Rey",
+  "originalYear": 2021,
+  "publishedYear": 2021,
+  "bindingType": "Hardcover",
+  "length": 304,
+  "isbn": 0593356829,
+  "isbn13": 9780593356821
+}
+
+{
+  "title": "Becoming",
+  "authorFirst": "Michelle",
+  "authorLast": "Obama",
+  "publisher": "Crown",
+  "originalYear": 2018,
+  "publishedYear": 2018,
+  "bindingType": "ebook",
+  "length": 599
+}
+
+{
+  "title": "When the Apricots Bloom",
+  "authorFirst": "Gina",
+  "authorLast": "Wilkonson",
+  "publisher": "Kensington Publishing Corp.",
+  "originalYear": 2021,
+  "publishedYear": 2021,
+  "bindingType": "Hardcover",
+  "length": 304,
+  "isbn": 1496729358,
+  "isbn13": 9781496729354
+}
+
+{
+  "title": "Kim Jiyoung, Born 1982",
+  "authorFirst": "Cho",
+  "authorLast": "Nam-Joo",
+  "translator": "Jamie Chang",
+  "originalLang": "Korean",
+  "publisher": "Liveright",
+  "originalYear": 2016,
+  "publishedYear": 2020,
+  "bindingType": "Hardcover",
+  "length": 176,
+  "isbn":1631496700,
+  "isbn13": 9781631496707
+}
+
+{
+  "title": "A Promised Land",
+  "authorFirst": "Barack",
+  "authorLast": "Obama",
+  "publisher": "Crown Publishing Group",
+  "originalYear": 2010,
+  "publishedYear": 2010,
+  "bindingType": "Hardcover",
+  "length": 751,
+  "isbn": 1524763160,
+  "isbn13": 9781524763169
+}
+
+{
+  "title": "All Systems Red",
+  "authorFirst": "Martha",
+  "authorLast": "Wells",
+  "publisher": "Tor.com",
+  "series": "The Murderbot Diaries",
+  "seriesNum": 1,
+  "originalYear": 2017,
+  "publishedYear": 2017,
+  "bindingType": "ebook"
+  "length": 144,
+  "isbn13": 9780765397522
+}
+
+{
+  "title": "Artificial Condition",
+  "authorFirst": "Martha",
+  "authorLast": "Wells",
+  "publisher": "Tor.com",
+  "series": "The Murderbot Diaries",
+  "seriesNum": 2,
+  "originalYear": 2018,
+  "publishedYear": 2018,
+  "bindingType": "Hardcover",
+  "length": 158,
+  "isbn": 1250186927,
+  "isbn13": 9781250186928
+}
+
+{
+  "title": "Rogue Protocol",
+  "authorFirst": "Martha",
+  "authorLast": "Wells",
+  "publisher": "Tor.com",
+  "series": "The Murderbot Diaries",
+  "seriesNum": 3,
+  "originalYear": 2018,
+  "publishedYear": 2018,
+  "bindingType": "Hardcover",
+  "length": 158,
+  "isbn": 2018,
+  "isbn13": 2018
+}
+
+
+{
+  "title": "Harry Potter and the Sorcerer's Stone",
+  "authorFirst": "J.K.",
+  "authorLast": "Rowling",
+  "publisher": "Scholastic Inc",
+  "series": "Harry Potter",
+  "seriesNum": 1,
+  "originalYear": 1997,
+  "publishedYear": 2003,
+  "bindingType": "Hardcover",
+  "length": 309
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
+
+{
+  title:
+  authorFirst:
+  authorLast:
+  authorSuffix:
+  publisher:
+  originalYear:
+  publishedYear:
+  bindingType:
+  length:
+  isbn:
+  isbn13:
+}
