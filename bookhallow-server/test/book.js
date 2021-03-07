@@ -1,3 +1,5 @@
+//https://www.digitalocean.com/community/tutorials/test-a-node-restful-api-with-mocha-and-chai
+
 //During the test the env variable is set to test
 process.env.NODE_ENV = 'test';
 const mongoose = require("mongoose");
