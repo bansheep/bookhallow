@@ -46,6 +46,7 @@ app.use("/auth", require("./routers/userRouter"));
 app.route("/book")
     .get(book.getBooks)
     .post(book.postBook);
+
 app.route("/book/:id")
     .get(book.getBook)
     .delete(book.deleteBook)
