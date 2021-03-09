@@ -18,7 +18,7 @@ function Header(){
       console.log("Book info: " + bookInfo);
 
 
-     axios.get("http://localhost:5000/search/", {title: bookInfo})
+     axios.get("http://localhost:5000/search/"+ bookInfo)
                 .then((response) => {
                   console.log(response.data);
                 })
