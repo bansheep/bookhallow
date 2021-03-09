@@ -13,6 +13,11 @@
     display: block;
 }
 
+.mainSubTitleLight {
+    font-family: 'Share Tech';
+    color: #1e344b;
+}
+
 .Headline {
     font-family: 'Libre Baskerville';
     font-size: 2rem;
@@ -83,6 +88,14 @@
     height: 495px;
 }
 
+.accountDiv {
+    /* background-image: linear-gradient(#1e344b, #0F1822); */
+    background-color:  #ffffff;
+    position: relative;
+    width: 100%;
+    height: 540px;
+}
+
 .divTownship {
     background-image: url(images/Town.png);
     position: relative;
@@ -91,6 +104,15 @@
     width: auto;
     height: 150px;
   }
+
+  .divTownshipLight {
+      background-image: url(images/Town.png);
+      position: relative;
+      background-color: #ffffff;
+      background-size: 180px;
+      width: auto;
+      height: 150px;
+    }
 
 .div2 {
     background-color: #ffffff;
@@ -107,6 +129,14 @@
 
 .divBookShelf {
     background-image: url(images/BookShelf.png);
+    position: relative;
+    background-size: 550px;
+    width: auto;
+    height: 100px;
+}
+
+.divBookShelfLight {
+    background-image: url(images/BookShelfLight.png);
     position: relative;
     background-size: 550px;
     width: auto;
