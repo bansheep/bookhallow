@@ -31,7 +31,6 @@ function Account(){
       </div >
 
     </div>
-    <div className="divBookShelfLight" > < /div>
 
     </div>)
 };

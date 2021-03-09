@@ -17,18 +17,14 @@ function Header(){
       console.log("Form submitted");
       console.log("Book info: " + bookInfo);
 
-      const bookData = {
-        titld: bookInfo
-      };
 
-     await axios.get("http://localhost:5000/auth/book:id", bookData)
+     axios.get("http://localhost:5000/search/", {title: bookInfo})
                 .then((response) => {
                   console.log(response.data);
-                  console.log(response.status);
-                  console.log(response.statusText);
-                  console.log(response.headers);
-                  console.log(response.config);
-     });
+                })
+                .catch(err => console.error(err));
+
+     setBookInfo("");
    }
    catch(err){ console.error(err); }
   }
@@ -40,16 +36,17 @@ return <div>
     <div className="container-fluid">
       <a  className="navbar-brand" href="/">Bookhallow</a>
 
-      <div className="search-container">
-    <form action="/">
-      <input type="text"
-      placeholder="Search.."
-      name="search"
-      className="form-control"
-      onChange={(e) => setBookInfo(e.target.value)}
-      value={bookInfo}
-      />
-      <button type="submit" onSubmit={search} ><i className="fa fa-search"></i></button>
+    <div className="search-container">
+
+        <form onSubmit={search} className="form-inline">
+        <input type="text"
+                placeholder="Book Title"
+                name="search"
+                className="form-control mr-sm-2"
+                onChange={(e) => setBookInfo(e.target.value)}
+                value={bookInfo}
+        />
+        <button type="submit" className="btn btn-sm btn-outline-secondary">Search</button>
       </form>
     </div>
 
