@@ -45,6 +45,7 @@ app.use(bodyParser.text());
 
 // set up routes
 app.use("/auth", require("./routers/userRouter"));
+app.use("/booklist", require("./routers/bookListRouter"));
 //app.use("/book", require("./routers/bookRouter"));
 
 

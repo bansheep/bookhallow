@@ -1,8 +1,16 @@
 import React from "react";
 import CharCard from "./CharCard";
 import Jumbotron from 'react-bootstrap/Jumbotron'
+import axios from "axios";
 
 function Account(){
+
+axios.get("http://localhost:5000/book/60445351945c2735c61cabb6")
+              .then(res => res.data)
+              .catch(err => console.error(err));
+
+
+
   return (<div>
     <div className = "accountDiv" >
       <div className="row">
@@ -16,7 +24,7 @@ function Account(){
         <div className="col-6 col-sm">
         <Jumbotron>
           <h1 className="mainSubTitleLight">Welcome!</h1>
-          <p>This is the main account page for each user.</p>
+          <div>Title: </div>
           <p>There will be a location for books in progress.</p>
           <p>Another section for challenges.</p>
           <p>Another for book lists.</p>

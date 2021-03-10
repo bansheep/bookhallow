@@ -10,7 +10,7 @@ function Header(){
 
   const[bookInfo, setBookInfo] =  useState("");
 
-  async function search(event){
+  function search(event){
     event.preventDefault();
 
     try{

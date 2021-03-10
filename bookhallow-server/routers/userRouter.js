@@ -118,5 +118,44 @@ router.get("/loggedIn", (req, res) => {
   }
 );
 
+router.get("/", async (req,res) => {
+  console.log("Checking token");
+  const token = req.cookies.token;
+  if (!token) return res.json(false);
+
+  // compares token to JWT_SECRET, if no then throws error
+  // the decoded payload of the JWT is put into verified
+  // verified.user holds the user's id
+  const verified = jwt.verify(token, process.env.JWT_SECRET);
+  let userId = verified.user;
+
+  console.log("Looking for user " + userId);
+
+
+  User.findById(userId, (err, book) => {
+      if(err) res.send(err);
+      //If no errors, send it back to the client
+      res.json(book);
+  });
+  // User.findById(userId), (err, foundUser) => {
+  //   if(err) console.error(err);
+  //
+  //   else if(foundUser){
+  //     res.json(foundUser);
+  //     console.log("Looking for user " + userId);
+  //     // find book list in user's accounts
+  //     if(foundUser.bookLists.length === 0){
+  //       // book list is empty
+  //       console.log("No book lists!");
+  //     }else{
+  //       console.log("User has book lists!");
+  //     }
+  //
+  //   }
+  // }
+
+
+});
+
 
 module.exports = router;

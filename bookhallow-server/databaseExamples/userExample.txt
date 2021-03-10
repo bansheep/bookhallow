@@ -1,0 +1,18 @@
+/* 1 */
+{
+    "_id" : ObjectId("6046ddbd6bc653326c6a2717"),
+    "username" : "testing",
+    "email" : "testing@aol.com",
+    "password" : "$2a$10$osyOkUGbcIqPzX9d7n9rSel4yWGiRRY0ZpHK58udSkfsVhiHCD506",
+    "books" : [],
+    "bookLists" : [],
+    "character" : [
+        {
+            "classType" : "",
+            "level" : 0,
+            "experience" : 0,
+            "health" : 50
+        }
+    ],
+    "__v" : 0
+}

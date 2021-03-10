@@ -87,7 +87,7 @@
   "seriesNum": 1,
   "originalYear": 2017,
   "publishedYear": 2017,
-  "bindingType": "ebook"
+  "bindingType": "ebook",
   "length": 144,
   "isbn13": 9780765397522
 }
