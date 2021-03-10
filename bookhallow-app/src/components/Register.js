@@ -16,12 +16,6 @@ function Register(){
         event.preventDefault();
 
      try{
-       console.log("Form submitted");
-       console.log("Username: " + username);
-       console.log("Email: " + email);
-       console.log("Password: " + password);
-       console.log("Password repeat: " + passwordVerify);
-
        const newAccount = {
          username,
          email,
@@ -30,7 +24,7 @@ function Register(){
        };
 
       await axios.post("http://localhost:5000/auth/", newAccount);
-      await getLoggedIn();
+      getLoggedIn();
       history.push("/account");
     }
     catch(err){ console.error(err); }

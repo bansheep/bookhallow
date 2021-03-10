@@ -118,5 +118,23 @@ router.get("/loggedIn", (req, res) => {
   }
 );
 
+router.get("/:id", (req,res) => {
+  User.findById(req.params.id, (err, user) => {
+      if(err) res.send(err);
+      //If no errors, send it back to the client
+      res.json(user);
+  });
+
+});
+
+router.get("/", (req,res) => {
+  let query = User.find({});
+  query.exec((err, users) => {
+      if(err) res.send(err);
+      //If no errors, send them back to the client
+      res.json(users);
+  });
+});
+
 
 module.exports = router;

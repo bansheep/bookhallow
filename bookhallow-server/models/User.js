@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+let UserBook = require('./UserBook');
+let UserBookList = require('./UserBookList');
 
 const userSchema = new mongoose.Schema({
    username:{
@@ -12,8 +14,39 @@ const userSchema = new mongoose.Schema({
    password: {
       type: String,
       required: true
-   }
+   },
+
+   books: {
+     type: [String],
+     default: []
+   },
+
+   bookLists:{
+     type: [String],
+     default: []
+   },
+
+   character: [{
+     classType: {
+       type: String,
+       default: ""
+     },
+     level: {
+       type: Number,
+       default: 0
+     },
+     experience: {
+       type: Number,
+       default: 0
+     },
+     health: {
+       type: Number,
+       default: 50
+     }
+   }]
 });
+
+
 //
 // let userSchema = new Schema ({
 //     _id: Number,

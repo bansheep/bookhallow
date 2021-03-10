@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 let bodyParser = require('body-parser');
-let book = require('./routers/bookRouter')
+let book = require('./routers/bookRouter');
+let search = require('./routers/searchRouter');
+
+
 let config = require('config'); //we load the db location from the JSON files
 require('dotenv').config();
+const Book = require("./models/Book");
 
 
 
@@ -41,11 +45,18 @@ app.use(bodyParser.text());
 
 // set up routes
 app.use("/auth", require("./routers/userRouter"));
+app.use("/booklist", require("./routers/bookListRouter"));
+app.use("/mybooks", require("./routers/userBookRouter"));
 //app.use("/book", require("./routers/bookRouter"));
+
+
+app.route("/search/:title")
+    .get(search.getBookByTitle);
 
 app.route("/book")
     .get(book.getBooks)
     .post(book.postBook);
+
 app.route("/book/:id")
     .get(book.getBook)
     .delete(book.deleteBook)
