@@ -2,43 +2,6 @@ const router = require("express").Router();
 const Book = require("../models/Book");
 const auth = require("../middleware/auth");
 
-// router.post("/", auth, async (req, res) => {
-//   try{
-//     // Since auth has succeeded, the user id is available to use
-//     const {title} = req.body;
-//
-//     const newBook = new Book({
-//       title: title
-//     });
-//
-//     const savedBook =  newBook.save()
-//                   .then()
-//                   .catch(err => {
-//                    res.status(500).json({
-//                       errors: [{ error: err }]
-//                     })
-//                    });
-//
-//     res.json(savedBook);
-//
-//   }
-//   catch(err){
-//     console.error(err);
-//     res.status(500).send();
-//   }
-// });
-//
-// router.get("/", auth, async (req, res)=>{
-//   try{
-//     const books = await Book.find();
-//     res.json(books);
-//   }
-//   catch(err){
-//     console.error(err);
-//     res.status(500).send();
-//   }
-// });
-
 
 /*
  * GET /book route to retrieve all the books.
@@ -85,7 +48,7 @@ function getBook(req, res) {
  * DELETE /book/:id to delete a book given its id.
  */
 function deleteBook(req, res) {
-    Book.remove({_id : req.params.id}, (err, result) => {
+    Book.deleteOne({_id : req.params.id}, (err, result) => {
         res.json({ message: "Book successfully deleted!", result });
     });
 }
