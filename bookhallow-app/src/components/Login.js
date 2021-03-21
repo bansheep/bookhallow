@@ -14,23 +14,19 @@ function Login(){
   async function login(event){
     event.preventDefault();
 
-     try{
-       console.log("Form submitted");
-       console.log("Username: " + username);
-       console.log("Password: " + password);
-
+     try
+     {
        const loginData = {
          username,
          password,
        };
 
       await axios.post("http://localhost:5000/auth/login", loginData);
-      getLoggedIn();
+      await getLoggedIn();
 
       history.push("/account");
-
     }
-    catch(err){ console.error(err); }
+        catch(err){ console.error(err); }
   }
 
 
@@ -74,6 +70,5 @@ function Login(){
     </div>
   );
 }
-
 
 export default Login;

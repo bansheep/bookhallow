@@ -13,7 +13,7 @@ function Register(){
   const history = useHistory();
 
   async function register(event){
-        event.preventDefault();
+    event.preventDefault();
 
      try{
        const newAccount = {
@@ -24,8 +24,8 @@ function Register(){
        };
 
       await axios.post("http://localhost:5000/auth/", newAccount);
-      getLoggedIn();
-      history.push("/account");
+      await getLoggedIn();
+      await history.push("/account");
     }
     catch(err){ console.error(err); }
   }

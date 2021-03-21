@@ -3,7 +3,7 @@ import axios from "axios";
 import AuthContext from "../context/AuthContext";
 
 function Logout(){
-  const {getLoggedIn} = useContext(AuthContext);
+  const {getLoggedIn} =useContext(AuthContext);
 
   async function logOut(){
     await axios.get("http://localhost:5000/auth/logout");
@@ -12,7 +12,7 @@ function Logout(){
 
   useEffect(()=>{
     logOut();
-  },[]);
+  });
 
   return (<div>
   <div className = "div1" >
