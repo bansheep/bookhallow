@@ -2,14 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
-<<<<<<< HEAD
-require('dotenv').config();
-
-=======
 let bodyParser = require('body-parser');
-let book = require('./routers/bookRouter')
+let book = require('./routers/bookRouter');
+let search = require('./routers/searchRouter');
+
+
 let config = require('config'); //we load the db location from the JSON files
 require('dotenv').config();
+const Book = require("./models/Book");
 
 
 
@@ -25,7 +25,6 @@ connection.once('open', function(){
 })
 
 
->>>>>>> 9a20fbf975ee98d16278bfab43d82b6703bf0bb9
 // set up server
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -38,95 +37,26 @@ app.use(cors({
   credentials: true
 }));
 
-<<<<<<< HEAD
-// connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/bookhallowDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-const connection = mongoose.connection;
-
-connection.once('open', function(){
-    console.log("MongoDB database connection successfully established.")
-})
-=======
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 
->>>>>>> 9a20fbf975ee98d16278bfab43d82b6703bf0bb9
 
 
 // set up routes
 app.use("/auth", require("./routers/userRouter"));
-<<<<<<< HEAD
-app.use("/book", require("./routers/bookRouter"));
-
-
-
-// const mongoose = require('mongoose');
-// const cors = require('cors');
-// const bodyParser = require('body-parser');
-//
-//
-// const userRoutes = express.Router();
-//
-// let User = require('./models/User');
-//
-// //import routes
-// const authRoutes = require('./routes/auth');
-//
-
-//
-
-//
-// //middewares
-// app.use(bodyParser.json());
-//
-// app.use(cors());
-//
-// //routes middleware////
-// app.use('/', authRoutes);
-//
-// app.route("/books") // Get route that fetches all bookSchema
-//   .get(function(req, res) {
-//     Book.find(function(err, foundBooks) {
-//       if (err) {
-//         res.send(err);
-//       } else {
-//         res.send(foundBooks);
-//       }
-//     });
-// });
-//
-// app.route("/addAccount")
-// .post(function(req,res){
-//   let user = new User(req.body);
-//
-//   user.save()
-//       .then(user => {
-//         res.status(200).json({'user': 'user added successfully'})
-//       })
-//       .catch(err=> {
-//         res.status(400).send('adding new user failed');
-//       });
-// });
-//
-// app.route('/').get(function(req, res){
-//     User.find(function(err, users){
-//         if(err){
-//             console.log(err);
-//         }else{
-//             res.json(users);
-//         }
-//     });
-// });
-=======
+app.use("/booklist", require("./routers/bookListRouter"));
+app.use("/mybooks", require("./routers/userBookRouter"));
 //app.use("/book", require("./routers/bookRouter"));
+
+
+app.route("/search/:title")
+    .get(search.getBookByTitle);
 
 app.route("/book")
     .get(book.getBooks)
     .post(book.postBook);
+
 app.route("/book/:id")
     .get(book.getBook)
     .delete(book.deleteBook)
@@ -134,4 +64,3 @@ app.route("/book/:id")
 
 
 module.exports = app; // for testing
->>>>>>> 9a20fbf975ee98d16278bfab43d82b6703bf0bb9

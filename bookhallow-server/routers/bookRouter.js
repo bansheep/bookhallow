@@ -3,6 +3,7 @@ const Book = require("../models/Book");
 const auth = require("../middleware/auth");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.post("/", auth, async (req, res) => {
   try{
     // Since auth has succeeded, the user id is available to use
@@ -80,6 +81,8 @@ module.exports = router;
 //   }
 // });
 
+=======
+>>>>>>> fdddc14559f01e3ee8dfbf368bc33e9ca4d8a347
 
 /*
  * GET /book route to retrieve all the books.
@@ -126,7 +129,7 @@ function getBook(req, res) {
  * DELETE /book/:id to delete a book given its id.
  */
 function deleteBook(req, res) {
-    Book.remove({_id : req.params.id}, (err, result) => {
+    Book.deleteOne({_id : req.params.id}, (err, result) => {
         res.json({ message: "Book successfully deleted!", result });
     });
 }
