@@ -2,88 +2,6 @@ const router = require("express").Router();
 const Book = require("../models/Book");
 const auth = require("../middleware/auth");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-router.post("/", auth, async (req, res) => {
-  try{
-    // Since auth has succeeded, the user id is available to use
-    const {title} = req.body;
-
-    const newBook = new Book({
-      title: title
-    });
-
-    const savedBook =  newBook.save()
-                  .then()
-                  .catch(err => {
-                   res.status(500).json({
-                      errors: [{ error: err }]
-                    })
-                   });
-
-    res.json(savedBook);
-
-  }
-  catch(err){
-    console.error(err);
-    res.status(500).send();
-  }
-});
-
-router.get("/", auth, async (req, res)=>{
-  try{
-    const books = await Book.find();
-    res.json(books);
-  }
-  catch(err){
-    console.error(err);
-    res.status(500).send();
-  }
-});
-
-
-module.exports = router;
-=======
-// router.post("/", auth, async (req, res) => {
-//   try{
-//     // Since auth has succeeded, the user id is available to use
-//     const {title} = req.body;
-//
-//     const newBook = new Book({
-//       title: title
-//     });
-//
-//     const savedBook =  newBook.save()
-//                   .then()
-//                   .catch(err => {
-//                    res.status(500).json({
-//                       errors: [{ error: err }]
-//                     })
-//                    });
-//
-//     res.json(savedBook);
-//
-//   }
-//   catch(err){
-//     console.error(err);
-//     res.status(500).send();
-//   }
-// });
-//
-// router.get("/", auth, async (req, res)=>{
-//   try{
-//     const books = await Book.find();
-//     res.json(books);
-//   }
-//   catch(err){
-//     console.error(err);
-//     res.status(500).send();
-//   }
-// });
-
-=======
->>>>>>> fdddc14559f01e3ee8dfbf368bc33e9ca4d8a347
-
 /*
  * GET /book route to retrieve all the books.
  */
@@ -149,4 +67,3 @@ function updateBook(req, res) {
 
 //export all the functions
 module.exports = {router, getBooks, postBook, getBook, deleteBook, updateBook };
->>>>>>> 9a20fbf975ee98d16278bfab43d82b6703bf0bb9
