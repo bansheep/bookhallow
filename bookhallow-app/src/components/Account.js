@@ -40,8 +40,6 @@ axios.get("http://localhost:5000/book/60445351945c2735c61cabb6")
 
     </div>
 
-    <div className="divBookShelfLight" > < /div>
-
 
     </div>)
 };
