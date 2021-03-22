@@ -9,8 +9,6 @@ axios.get("http://localhost:5000/book/60445351945c2735c61cabb6")
               .then(res => res.data)
               .catch(err => console.error(err));
 
-
-
   return (<div>
     <div className = "accountDiv" >
       <div className="row">
@@ -39,8 +37,6 @@ axios.get("http://localhost:5000/book/60445351945c2735c61cabb6")
       </div >
 
     </div>
-
-    <div className="divBookShelfLight" > < /div>
 
 
     </div>)

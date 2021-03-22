@@ -136,8 +136,8 @@ router.post("/:listName/:bookName", auth, async (req, res) => {
 // })
 
 // get one book from books[]
-router.get("/:bookName", auth, async (req, res) => {
-    const bookName = req.params.bookName;
+router.get("/:id", auth, async (req, res) => {
+    const id = req.params.id;
 
     try{
       const token = req.cookies.token;
@@ -154,14 +154,15 @@ router.get("/:bookName", auth, async (req, res) => {
 
         else if(foundUser){
             // check list names
-            UserBook.findOne({userId:userId, name:bookName}, (err, foundBook) => {
+            UserBook.findById(id, (err, foundBook) => {
               if(err) console.error(err);
 
-              if(!foundList){
+              if(!foundBook){
                   console.log("Book does not exist");
               }
               else{
                 console.log(foundBook.title);
+                res.json(foundBook);
               }
           });
         }

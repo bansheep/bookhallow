@@ -74,6 +74,9 @@ return <div>
 
           {loggedIn === true &&(
             <>
+            <li className="nav-item">
+             <a className="nav-link" href={"/book_list_page"}>Book Lists</a>
+           </li>
              <li className="nav-item">
               <a className="nav-link" href={"/account"}>Account</a>
             </li>

@@ -53,8 +53,8 @@
     color: #ffbd59;
 }
 
-/* Body */
 
+/* images */
 .description-icons{
     display: block;
     margin-left: auto;
@@ -64,7 +64,14 @@
     padding-bottom: 10px;
     padding-top: 50px;
 }
+.bookcover_sm{
+   width: 50px;
+}
 
+.bookcover_lg{
+   width: 250px;
+}
+/* Body */
 
 .ContainerCenter {
     position: absolute;
