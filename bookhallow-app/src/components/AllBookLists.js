@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table'
 
 //import axios from "axios";
 
-function BookList(){
+function AllBookLists(){
 
   return (
   <div>
@@ -21,4 +21,4 @@ function BookList(){
   </div>)
 };
 
-export default BookList;
+export default AllBookLists;

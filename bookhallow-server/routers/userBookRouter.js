@@ -158,7 +158,7 @@ router.get("/:id", auth, async (req, res) => {
               if(err) console.error(err);
 
               if(!foundBook){
-                  console.log("Book does not exist");
+                  console.log("UserBook " + id +  " does not exist");
               }
               else{
                 console.log(foundBook.title);

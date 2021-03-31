@@ -18,7 +18,7 @@ router.get("/", auth, (req, res) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     let userId = verified.user;
 
-    console.log(userId);
+    console.log("User = " + userId);
     User.findById(userId, (err, foundUser) => {
       if(err) console.error(err);
 
