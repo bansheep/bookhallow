@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 
 
 //get all lists
-router.get("/", auth, (req, reS) => {
+router.get("/", auth, (req, res) => {
   try{
     const token = req.cookies.token;
     if (!token) return res.json(false);
@@ -18,6 +18,7 @@ router.get("/", auth, (req, reS) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     let userId = verified.user;
 
+    console.log("User = " + userId);
     User.findById(userId, (err, foundUser) => {
       if(err) console.error(err);
 
@@ -26,12 +27,18 @@ router.get("/", auth, (req, reS) => {
           if(foundUser.bookLists.length === 0) console.log("No book lists created yet!")
 
           else{
-            for( var list = 0; list < foundUser.bookLists.length; list++){
-              BookList.findById(foundUser.bookLists[list], (err, foundList) => {
-                  if(err) console.error(err);
-                  if(foundList)console.log(foundList.name + ": " + foundList._id);
-                });
-              }
+            const allLists = foundUser.bookLists;
+            // for( var list = 0; list < foundUser.bookLists.length; list++){
+            //   BookList.findById(foundUser.bookLists[list], (err, foundList) => {
+            //       if(err) console.error(err);
+            //       if(foundList){
+            //         console.log(foundList.name + ": " + foundList._id);
+            //
+            //       }
+            //     });
+            //   }
+
+            res.json(allLists);
             }
         }
     });
@@ -113,7 +120,8 @@ router.get("/:listName", auth, async (req, res) => {
 
         else if(foundUser){
             // check list names
-            BookList.findOne({userId:userId, name:customListName}, (err, foundList) => {
+            //BookList.findOne({userId:userId, name:customListName}, (err, foundList) => {
+            BookList.findById(customListName, (err, foundList) => {
               if(err) console.error(err);
 
               if(!foundList){
@@ -121,6 +129,7 @@ router.get("/:listName", auth, async (req, res) => {
               }
               else{
                 console.log(foundList.name + ": " + foundList._id);
+                res.json(foundList);
               }
           });
         }
@@ -129,6 +138,8 @@ router.get("/:listName", auth, async (req, res) => {
       res.status(401).json({errorMessage: "Unauthorized"});
     }
 });
+
+
 
     //     User.findOne({bookLists: customListName}, (err, foundList) =>{
     //       if(!err){

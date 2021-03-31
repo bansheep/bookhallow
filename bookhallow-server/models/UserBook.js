@@ -27,6 +27,10 @@ const userBookSchema = new Schema({
       type: [String],
       default: []
     },
+    status: {
+      type: String,
+      default: "Unread"
+    }
 })
 
 module.exports = mongoose.model('UserBook', userBookSchema);
