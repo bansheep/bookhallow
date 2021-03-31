@@ -30,7 +30,4 @@ const bookSchema = new mongoose.Schema({
     isbn13: Number,
 
 });
-
-
-
 module.exports = Book = mongoose.model('Book', bookSchema);
