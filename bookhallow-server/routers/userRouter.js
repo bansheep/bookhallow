@@ -131,6 +131,7 @@ router.get("/", (req,res) => {
   let query = User.find({});
   query.exec((err, users) => {
       if(err) res.send(err);
+
       //If no errors, send them back to the client
       res.json(users);
   });
