@@ -117,23 +117,6 @@ router.post("/:listName/:bookName", auth, async (req, res) => {
 
 });
 
-// const userBookSchema = new Schema({
-//     bookId: String,
-//     rating: Number,
-//     dateAdded: Date,
-//     datesRead:{
-//       type: [Date],
-//       default: []
-//     },
-//     lists: {
-//       type: [String],
-//       default: []
-//     },
-//     challenges: {
-//       type: [String],
-//       default: []
-//     },
-// })
 
 // get one book from books[]
 router.get("/:id", auth, async (req, res) => {
@@ -171,40 +154,6 @@ router.get("/:id", auth, async (req, res) => {
       res.status(401).json({errorMessage: "Unauthorized"});
     }
 });
-
-    //     User.findOne({bookLists: customListName}, (err, foundList) =>{
-    //       if(!err){
-    //         if(!foundList){
-    //           console.log("Book list does not exist!");
-    //         }else{
-    //           console.log("Book list already exists!");
-    //         }
-    //       }}
-    //     })
-
-    //     const list = new BookList(
-    //       {name: customListName,
-    //         description:"",
-    //         books:[]
-    //       });
-    //
-    //
-    //     list.save();
-    //   })
-      //.delete();
-
-
-// // Work on books read list
-// router.route("/read")
-//       .post()
-//       .get()
-//       .delete();
-//
-// // Work on books to read list
-// router.route("/to-read")
-//     .post()
-//     .get()
-//     .delete();
 
 
 module.exports = router;
