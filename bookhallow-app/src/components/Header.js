@@ -1,18 +1,20 @@
 import React, {useContext, useState} from "react";
 import '../index.css';
-import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
 import AuthContext from "../context/AuthContext";
+import Button from 'react-bootstrap/Button';
 import axios from "axios";
 
 
 function Header(){
   const {loggedIn} = useContext(AuthContext);
-
   const[bookInfo, setBookInfo] =  useState("");
 
   function search(event){
     event.preventDefault();
-
     try{
       console.log("Form submitted");
       console.log("Book info: " + bookInfo);
@@ -29,70 +31,35 @@ function Header(){
    catch(err){ console.error(err); }
   }
 
-
-return <div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-  <nav className="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <div className="container-fluid">
-      <a  className="navbar-brand" href="/">Bookhallow</a>
-
-    <div className="search-container">
-
-        <form onSubmit={search} className="form-inline">
-        <input type="text"
-                placeholder="Book Title"
-                name="search"
-                className="form-control mr-sm-2"
-                onChange={(e) => setBookInfo(e.target.value)}
-                value={bookInfo}
-        />
-        <button type="submit" className="btn btn-sm btn-outline-secondary">Search</button>
-      </form>
-    </div>
-
-      <button className="navbar-toggler " type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarText" aria-controls="navbarText"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarText">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        </ul>
-        <span className="navbar-text">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
+  return(
+    <div>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Bookhallow</Navbar.Brand>
+        <Nav className="mr-auto">
           {loggedIn === false &&
-            <>
-            <li className="nav-item">
-              <a className="nav-link" href={"/register"}>Register</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href={"/login"}>Login</a>
-            </li>
-            </>
+              <>
+              <Nav.Link href={"/register"}>Register</Nav.Link>
+              <Nav.Link href={"/login"}>Login</Nav.Link>
+              </>
           }
 
-          {loggedIn === true &&(
+          {loggedIn === true &&
             <>
-            <li className="nav-item">
-             <a className="nav-link" href={"/book_list_page"}>Book Lists</a>
-           </li>
-             <li className="nav-item">
-              <a className="nav-link" href={"/account"}>Account</a>
-            </li>
-              <li className="nav-item">
-                <a className="nav-link" href={"/logout"}>Logout</a>
-              </li>
-              </>)
+            <Nav.Link href={"/book_list_page"}>Book Lists</Nav.Link>
+            <Nav.Link href={"/account"}>Account</Nav.Link>
+            <Nav.Link href={"/logout"}>Logout</Nav.Link>
+            </>
             }
+        </Nav>
 
-          </ul>
-
-        </span>
-      </div>
+        <Form inline onSubmit={search}  onChange={(e) => setBookInfo(e.target.value)}>
+          <FormControl type="text" placeholder="Book Title" className="mr-sm-2" />
+          <Button variant="outline-info" type="submit" >Search</Button>
+        </Form>
+      </Navbar>
     </div>
-  </nav>
-</div>
+  );
 }
+
 
 export default Header;

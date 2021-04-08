@@ -6,40 +6,28 @@ import axios from "axios";
 function Account(){
 
 axios.get("http://localhost:5000/book/60445351945c2735c61cabb6")
-              .then(res => res.data)
-              .catch(err => console.error(err));
+      .then(res => res.data)
+      .catch(err => console.error(err));
 
-  return (<div>
+  return (
+  <div>
     <div className = "accountDiv" >
       <div className="row">
-          <p></p>
-      </div>
 
-      <div className="row">
-      <div className="col-sm">
-        <CharCard />
+        <div className="col-sm">
+          <CharCard />
         </div>
+
         <div className="col-6 col-sm">
-        <Jumbotron>
-          <h1 className="mainSubTitleLight">Welcome!</h1>
-          <div>Title: </div>
-          <p>There will be a location for books in progress.</p>
-          <p>Another section for challenges.</p>
-          <p>Another for book lists.</p>
-          <p>And there will be links for other parts!</p>
-        </Jumbotron>
-
-        </div>
-
-        <div className="col">
+          <Jumbotron>
+            <h1 className="mainSubTitleLight">Welcome!</h1>
+            <p>This is your account page.</p>
+          </Jumbotron>
         </div>
 
       </div >
-
     </div>
-
-
-    </div>)
+  </div>)
 };
 
 export default Account;

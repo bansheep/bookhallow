@@ -15,15 +15,15 @@ function Logout(){
     logOut();
   });
 
-  return (<div>
-  <div className = "div1" >
-    <div className = "ContainerCenter" >
-    <h3 className="mainSubTitle">You have succesfully logged out</h3>
+  return (
+    <div>
+      <div className = "div1" >
+        <div className = "ContainerCenter" >
+          <h3 className="mainSubTitle">You have succesfully logged out</h3>
+        </div>
       </div>
-  </div>
 
-  <div className = "divTownship" > < /div>
-
+      <div className = "divTownship" > < /div>
   </div>)
 };
 
