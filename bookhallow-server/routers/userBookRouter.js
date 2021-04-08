@@ -5,8 +5,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
-
-
 //get all books
 router.get("/", auth, (req, reS) => {
   try{
@@ -20,7 +18,7 @@ router.get("/", auth, (req, reS) => {
     let userId = verified.user;
 
     User.findById(userId, (err, foundUser) => {
-      if(err) console.error(err);
+      if(err) next(err);
 
       else if(foundUser){
           // check list names
@@ -29,8 +27,8 @@ router.get("/", auth, (req, reS) => {
           else{
             for( var book = 0; book < foundUser.books.length; book++){
               Book.findById(foundUser.books[book], (err, foundBook) => {
-                  if(err) console.error(err);
-                  if(foundList)console.log(foundBook.title);
+                  if(err) next(err);
+                  if(foundList) res.json(foundBook.title);
                 });
               }
             }
@@ -57,14 +55,12 @@ router.post("/:listName/:bookName", auth, async (req, res) => {
       let userId = verified.user;
 
       User.findById(userId, (err, foundUser) => {
-        if(err) console.error(err);
+        if(err) next(err);
 
         else if(foundUser){
-           console.log(foundUser.bookLists);
-
             // check list names
             BookList.findOne({userId:userId, name:customListName}, (err, foundList) => {
-              if(err) console.error(err);
+              if(err) next(err);
 
               if(!foundList){
                 // create a new list
@@ -77,14 +73,10 @@ router.post("/:listName/:bookName", auth, async (req, res) => {
                   });
 
                 list.save();
-
-                // foundUser.bookLists.push(list._id);
-                // foundUser.save();
-                // console.log(foundUser.bookLists);
               }
               else{
                 Book.findOne({title:bookName}, (err, book) => {
-                  if(err) console.error(err);
+                  if(err) next(err);
 
                   if(!book) console.log("Book is not in the database")
 
@@ -133,18 +125,17 @@ router.get("/:id", auth, async (req, res) => {
       let userId = verified.user;
 
       User.findById(userId, (err, foundUser) => {
-        if(err) console.error(err);
+        if(err) next(err);
 
         else if(foundUser){
             // check list names
             UserBook.findById(id, (err, foundBook) => {
-              if(err) console.error(err);
+              if(err) next(err);
 
               if(!foundBook){
                   console.log("UserBook " + id +  " does not exist");
               }
               else{
-                console.log(foundBook.title);
                 res.json(foundBook);
               }
           });
@@ -154,6 +145,5 @@ router.get("/:id", auth, async (req, res) => {
       res.status(401).json({errorMessage: "Unauthorized"});
     }
 });
-
 
 module.exports = router;

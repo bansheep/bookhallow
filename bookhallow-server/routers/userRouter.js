@@ -44,16 +44,13 @@ router.post("/", async (req,res) => {
     const token = jwt.sign({user: savedUser._id}, process.env.JWT_SECRET);
 
     // send the token in a HTTP-only cookie
-
     res.cookie("token", token, {
       httpOnly: true
     }).send();
-
-
   }
   catch(err){
-    console.error(err);
     res.status(500).send();
+    next(err);
   }
 });
 
@@ -74,24 +71,21 @@ router.post("/login", async (req, res) => {
     if(!passwordCorrect)
       return res.status(401).json({errorMessage: "Incorrect username and/or password "})
 
-
     // sign the token
     const token = jwt.sign({user: existingUser._id}, process.env.JWT_SECRET);
 
     // send the token in a HTTP-only cookie
-
     res.cookie("token", token, {
       httpOnly: true
     }).send();
 
   }
   catch(err){
-    console.error(err);
     res.status(500).send();
+    next(err);
   }
 
 });
-
 
 // Log out
 router.get("/logout", (req,res) => {
@@ -107,22 +101,19 @@ router.get("/loggedIn", (req, res) => {
       const token = req.cookies.token;
       if (!token)
         return res.json(false);
-
       jwt.verify(token, process.env.JWT_SECRET);
-
       res.send(true);
     } catch (err) {
-      console.error(err);
       res.json(false);
+      next(err);
     }
   }
 );
 
 router.get("/:id", (req,res) => {
   User.findById(req.params.id, (err, user) => {
-      if(err) res.send(err);
-      //If no errors, send it back to the client
-      res.json(user);
+      if(err)next(err);
+      else res.json(user);
   });
 
 });
@@ -130,10 +121,8 @@ router.get("/:id", (req,res) => {
 router.get("/", (req,res) => {
   let query = User.find({});
   query.exec((err, users) => {
-      if(err) res.send(err);
-
-      //If no errors, send them back to the client
-      res.json(users);
+      if(err) next(err);
+      else res.json(users);
   });
 });
 
