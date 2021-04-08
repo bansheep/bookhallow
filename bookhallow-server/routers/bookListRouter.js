@@ -4,8 +4,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
-
-
 //get all lists
 router.get("/", auth, (req, res) => {
   try{
@@ -20,7 +18,7 @@ router.get("/", auth, (req, res) => {
 
     console.log("User = " + userId);
     User.findById(userId, (err, foundUser) => {
-      if(err) console.error(err);
+      if(err) next(err);
 
       else if(foundUser){
           // check list names
@@ -28,18 +26,8 @@ router.get("/", auth, (req, res) => {
 
           else{
             const allLists = foundUser.bookLists;
-            // for( var list = 0; list < foundUser.bookLists.length; list++){
-            //   BookList.findById(foundUser.bookLists[list], (err, foundList) => {
-            //       if(err) console.error(err);
-            //       if(foundList){
-            //         console.log(foundList.name + ": " + foundList._id);
-            //
-            //       }
-            //     });
-            //   }
-
             res.json(allLists);
-            }
+          }
         }
     });
   } catch(err){
@@ -62,14 +50,14 @@ router.post("/:listName", auth, async (req, res) => {
       let userId = verified.user;
 
       User.findById(userId, (err, foundUser) => {
-        if(err) console.error(err);
+        if(err) next(err);
 
         else if(foundUser){
            console.log(foundUser.bookLists);
 
             // check list names
             BookList.findOne({userId:userId, name:customListName}, (err, foundList) => {
-              if(err) console.error(err);
+              if(err) next(err);
 
               if(!foundList){
                 // create a new list
@@ -85,7 +73,6 @@ router.post("/:listName", auth, async (req, res) => {
 
                 foundUser.bookLists.push(list._id);
                 foundUser.save();
-                console.log(foundUser.bookLists);
               }
               else{
                 console.log("List " + customListName + " already exists!");
@@ -98,8 +85,6 @@ router.post("/:listName", auth, async (req, res) => {
     }
 
 });
-
-
 
 // get one custom list
 router.get("/:listName", auth, async (req, res) => {
@@ -116,19 +101,17 @@ router.get("/:listName", auth, async (req, res) => {
       let userId = verified.user;
 
       User.findById(userId, (err, foundUser) => {
-        if(err) console.error(err);
+        if(err) next(err);
 
         else if(foundUser){
             // check list names
-            //BookList.findOne({userId:userId, name:customListName}, (err, foundList) => {
             BookList.findById(customListName, (err, foundList) => {
-              if(err) console.error(err);
+              if(err) next(err);
 
               if(!foundList){
                   console.log("Book list does not exist");
               }
               else{
-                console.log(foundList.name + ": " + foundList._id);
                 res.json(foundList);
               }
           });
@@ -138,42 +121,5 @@ router.get("/:listName", auth, async (req, res) => {
       res.status(401).json({errorMessage: "Unauthorized"});
     }
 });
-
-
-
-    //     User.findOne({bookLists: customListName}, (err, foundList) =>{
-    //       if(!err){
-    //         if(!foundList){
-    //           console.log("Book list does not exist!");
-    //         }else{
-    //           console.log("Book list already exists!");
-    //         }
-    //       }}
-    //     })
-
-    //     const list = new BookList(
-    //       {name: customListName,
-    //         description:"",
-    //         books:[]
-    //       });
-    //
-    //
-    //     list.save();
-    //   })
-      //.delete();
-
-
-// // Work on books read list
-// router.route("/read")
-//       .post()
-//       .get()
-//       .delete();
-//
-// // Work on books to read list
-// router.route("/to-read")
-//     .post()
-//     .get()
-//     .delete();
-
 
 module.exports = router;

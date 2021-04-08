@@ -17,7 +17,7 @@ function Header(){
     event.preventDefault();
     try{
       console.log("Form submitted");
-      console.log("Book info: " + bookInfo);
+      console.log("Book title: " + bookInfo);
 
 
      axios.get("http://localhost:5000/search/"+ bookInfo)

@@ -1,12 +1,11 @@
 const router = require("express").Router();
 const Book = require("../models/Book");
 
-function getBookByTitle(req, res){
+router.get("/:title", (req, res) => {
   Book.find({title: {$regex: req.params.title}}, (err, book) => {
-      if(err) console.error(err);
+      if(err) next(err);
       res.json(book);
   });
-}
+});
 
-
-module.exports = {router, getBookByTitle};
+module.exports = router;
