@@ -38,6 +38,11 @@
     text-align: center;
 }
 
+.bodyTextWhite {
+    font-family: 'Share Tech';
+    font-size: 1rem;
+    color: #FFFFFF;
+}
 /* Custom navbar colors*/
 .navbar-custom {
     background-color:  #0F1822;

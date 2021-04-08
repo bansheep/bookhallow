@@ -2,6 +2,8 @@ import React, {useContext, useState} from "react";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function Login(){
   const[username, setUsername] = useState("");
@@ -10,12 +12,10 @@ function Login(){
 
   const history = useHistory();
 
-
   async function login(event){
     event.preventDefault();
 
-     try
-     {
+     try{
        const loginData = {
          username,
          password,
@@ -26,47 +26,38 @@ function Login(){
 
       history.push("/account");
     }
-        catch(err){ console.error(err); }
+    catch(err){ console.error(err); }
   }
-
 
   return(
     <div>
-    <div className = "div1" >
-      <div className = "ContainerCenter" >
+      <div className="div1">
+        <div className = "ContainerCenter" >
 
-      <h3 className="mainSubTitle">Login</h3>
-            <a className="bodyTextLight nav-link" href="/register">Need to Register?</a>
-      <form onSubmit={login}>
-      <div className="form-group">
-          <input type="text"
-              className="form-control"
-              placeholder="username"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-          />
-      </div>
+        <h3 className="mainSubTitle">Login</h3>
+        <a className="bodyTextLight nav-link" href="/register">Need to Register?</a>
 
-      <div className="form-group">
-          <input type="password"
-              className="form-control"
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-          />
-      </div>
+        <Form onSubmit={login}>
+          <Form.Group controlId="formUsername"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}>
+            <Form.Control type="text" placeholder="Enter username" />
+          </Form.Group>
 
-        <div className="form-group">
-          <input type="submit" value="Login" className="btn btn-light" />
-        </div>
 
-      </form>
+          <Form.Group controlId="formPassword"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}>
+            <Form.Control type="password" placeholder="Enter password" />
+          </Form.Group>
+
+          <Button variant="light" type="submit"> Login </Button>
+
+          </Form>
 
       </div>
-    </div>
-
-    <div className = "divTownship" > < /div>
-
+      </div>
+      <div className = "divTownship" > < /div>
     </div>
   );
 }

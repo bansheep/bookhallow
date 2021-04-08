@@ -3,26 +3,23 @@ import Table from 'react-bootstrap/Table'
 import axios from "axios";
 import harrowCover from '../images/9781250313225.jpg';
 
-
 function ShowBookList(){
   const [userBook, setUserBook] = useState([]);
   const [bookList, setBookList] = useState([""]);
-//  const [books, setBooks] = useState([""]);
 
 
   async function getAllLists(){
     //get all book lists
-
     await axios.get("http://localhost:5000/booklist")
-              .then(res => {
+               .then(res => {
                     const lists = res.data;
                     getFirstList(lists[0]);
-                  });
+               });
   }
 
   async function getFirstList(listId){
     await axios.get("http://localhost:5000/booklist/" + listId)
-              .then(res => {
+               .then(res => {
                     const list = res.data;
                     setBookList(list);
 
@@ -30,7 +27,7 @@ function ShowBookList(){
                     {
                       getBook(list.books[i]);
                     }
-                  });
+               });
   }
 
 async function getBook(bookId){
@@ -40,10 +37,7 @@ async function getBook(bookId){
                axios.get("http://localhost:5000/book/" + myBook.bookId)
                     .then(res2 => {
                             const dbBook = res2.data;
-                            //setBooks(prevItems => [...prevItems, dbBook]);
-
                             let newBook = {
-
                               title: dbBook.title,
                               authorLast: dbBook.authorLast,
                               authorFirst: dbBook.authorFirst,
@@ -52,20 +46,13 @@ async function getBook(bookId){
                             }
                             setUserBook(prevItems => [...prevItems, newBook]);
                     });
-
              });
 }
-
-
 
   useEffect(()=>{
     getAllLists();
   },[]);
 
-  // <ul>
-  //   <li key={bookList._id}> {bookList.name}</li>
-  // </ul>
-//      {allBookLists.map(list => ( <li key={list.id}> {list}</li> ))}
   return (
     <div>
     <h1 className="Headline">{bookList.name} Book List</h1>

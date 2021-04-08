@@ -2,6 +2,8 @@ import React, {useContext, useState} from "react";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function Register(){
   const[username, setUsername] = useState("");
@@ -32,62 +34,47 @@ function Register(){
 
   return(
     <div>
-    <div className = "div1" >
-      <div className = "ContainerCenter" >
-      <h3 className="mainSubTitle">Start your journey</h3>
-      <a className="bodyTextLight nav-link" href="/login">Already Registered?</a>
+      <div className="div1">
 
-      <form onSubmit={register}>
-        <div className="form-group">
-            <input type="text"
-                className="form-control"
-                placeholder="username"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-            />
-        </div>
+        <div className = "ContainerCenter" >
 
-        <div className="form-group">
-            <input type="email"
-                className="form-control"
-                placeholder="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-            />
-        </div>
+        <h3 className="mainSubTitle">Start your journey</h3>
+        <a className="bodyTextLight nav-link" href="/login">Already Registered?</a>
 
-        <div className="form-group">
-            <input type="password"
-                className="form-control"
-                placeholder="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-            />
-        </div>
+        <Form onSubmit={register}>
+          <Form.Group controlId="formUsername"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}>
+            <Form.Control type="text" placeholder="Enter username" />
+          </Form.Group>
 
-        <div className="form-group">
-            <input type="password"
-                className="form-control"
-                placeholder="repeat password"
-                onChange={(e) => setPasswordVerify(e.target.value)}
-                value={passwordVerify}
-            />
-        </div>
+          <Form.Group controlId="formEmail"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
 
-        <div className="form-group">
-          <input type="submit" value="Register" className="btn btn-light" />
-        </div>
+          <Form.Group controlId="formPassword"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}>
+            <Form.Control type="password" placeholder="Enter password" />
+          </Form.Group>
 
-      </form>
+          <Form.Group controlId="formPasswordVerify"
+            onChange={(e) => setPasswordVerify(e.target.value)}
+            value={passwordVerify}>
+            <Form.Control type="password" placeholder="Re-enter password" />
+          </Form.Group>
 
-      </div>
-    </div>
+          <Button variant="light" type="submit"> Register </Button>
 
-    <div className = "divTownship" > < /div>
+        </Form>
 
+       </div>
+       </div>
+      <div className = "divTownship" > < /div>
     </div>
   );
 }
-
 
 export default Register;
