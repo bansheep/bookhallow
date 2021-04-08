@@ -15,7 +15,6 @@ function AuthContextProvider(props){
     getLoggedIn();
   });
 
-
   return (
     <AuthContext.Provider value={{loggedIn, getLoggedIn}}>
       {props.children}

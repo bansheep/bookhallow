@@ -1,6 +1,3 @@
-// All the books in the database that users can search
-// and then link to their accounts through UserBook
-
 const mongoose = require('mongoose');
 
 const bookSchema = new mongoose.Schema({
@@ -16,11 +13,32 @@ const bookSchema = new mongoose.Schema({
        type: String,
        required: true
     },
+
     authorSuffix: String,
     publisher: String,
     originalYear: Number,
     publishedYear: Number,
-    bindingType: String,
+
+    versions: [{
+      binding: {
+      type: String,
+      default: "",
+      required: true
+      },
+      isbn: {
+        type: Number
+      },
+      isbn13: {
+      type: Number
+      },
+      length: {
+        type: Number,
+        required: true,
+        min: 1
+      },
+      publishedYear: Number
+    }],
+
     length: {
       type: Number,
       required: true,
@@ -30,4 +48,5 @@ const bookSchema = new mongoose.Schema({
     isbn13: Number,
 
 });
+
 module.exports = Book = mongoose.model('Book', bookSchema);

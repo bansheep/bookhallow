@@ -24,6 +24,8 @@ function Router() {
           (<>
             <Route path="/register" component={Register}/>
             <Route path="/login" component={Login}/>
+            <Route path="/book_list_page" component={Login}/>
+            <Route path="/account" component={Login}/>
             </>
           )
         }

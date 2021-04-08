@@ -47,20 +47,7 @@ app.use(bodyParser.text());
 app.use("/auth", require("./routers/userRouter"));
 app.use("/booklist", require("./routers/bookListRouter"));
 app.use("/mybooks", require("./routers/userBookRouter"));
-//app.use("/book", require("./routers/bookRouter"));
-
-
-app.route("/search/:title")
-    .get(search.getBookByTitle);
-
-app.route("/book")
-    .get(book.getBooks)
-    .post(book.postBook);
-
-app.route("/book/:id")
-    .get(book.getBook)
-    .delete(book.deleteBook)
-    .put(book.updateBook);
-
+app.use("/book", require("./routers/bookRouter"));
+app.use("/search", require("./routers/searchRouter"));
 
 module.exports = app; // for testing
