@@ -6,12 +6,9 @@ let bodyParser = require('body-parser');
 let book = require('./routers/bookRouter');
 let search = require('./routers/searchRouter');
 
-
 let config = require('config'); //we load the db location from the JSON files
 require('dotenv').config();
 const Book = require("./models/Book");
-
-
 
 // connect to MongoDB
 mongoose.connect(config.DBHost, {
@@ -23,7 +20,6 @@ const connection = mongoose.connection;
 connection.once('open', function(){
     console.log("MongoDB database connection successfully established.")
 })
-
 
 // set up server
 const app = express();
@@ -40,8 +36,6 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
-
-
 
 // set up routes
 app.use("/auth", require("./routers/userRouter"));
