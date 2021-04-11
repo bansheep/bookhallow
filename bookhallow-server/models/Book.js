@@ -18,27 +18,7 @@ const bookSchema = new mongoose.Schema({
     publisher: String,
     originalYear: Number,
     publishedYear: Number,
-
-    versions: [{
-      binding: {
-      type: String,
-      default: "",
-      required: true
-      },
-      isbn: {
-        type: Number
-      },
-      isbn13: {
-      type: Number
-      },
-      length: {
-        type: Number,
-        required: true,
-        min: 1
-      },
-      publishedYear: Number
-    }],
-
+    binding: String,
     length: {
       type: Number,
       required: true,
