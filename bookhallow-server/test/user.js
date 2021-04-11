@@ -12,16 +12,14 @@ let server = require('../server');
 let should = chai.should();
 
 chai.use(chaiHttp);
-//Our parent block
+
 describe('Users', () => {
-      // beforeEach((done) => { //Before each test we empty the database
-      //   User.deleteOne({}, (err) => {
-      //     done();
-      //   });
-      // });
-      /*
-       * Test the /GET route
-       */
+      before((done) => { //Before running the tests empty the database
+        User.deleteMany({}, (err) => {
+          done();
+        });
+      });
+
       describe('/GET user', () => {
         it('it should GET all the users', (done) => {
           chai.request(server)
@@ -29,7 +27,7 @@ describe('Users', () => {
             .end((err, res) => {
               res.should.have.status(200);
               res.body.should.be.a('array');
-              res.body.length.should.be.eql(1);
+              res.body.length.should.be.eql(0);
               done();
             });
         });
@@ -167,7 +165,7 @@ describe('Users', () => {
           it('it should not log in a user with wrong password', (done) => {
             let user = {
               username: "noEmail",
-              password: "password",
+              password: "password"
             }
             chai.request(server)
               .post('/auth/login/')
@@ -181,7 +179,7 @@ describe('Users', () => {
           it('it should not log in a user with wrong username', (done) => {
             let user = {
               username: "wrongUsername",
-              password: "password",
+              password: "password"
             }
             chai.request(server)
               .post('/auth/login/')
@@ -194,7 +192,7 @@ describe('Users', () => {
 
           it('it should not log in a user with missing password', (done) => {
             let user = {
-              username: "noEmail",
+              username: "noEmail"
             }
             chai.request(server)
               .post('/auth/login/')
@@ -208,7 +206,7 @@ describe('Users', () => {
           it('it should log in a user', (done) => {
             let user = {
               username: "noEmail",
-              password: "123456789",
+              password: "123456789"
             }
             chai.request(server)
               .post('/auth/login/')
@@ -224,7 +222,6 @@ describe('Users', () => {
               .get('/auth/loggedIn/')
               .end((err, res) => {
                 res.should.have.status(200);
-                res.should.be.true;
                 done();
               });
           });
