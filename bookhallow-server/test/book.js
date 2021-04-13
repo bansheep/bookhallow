@@ -12,16 +12,14 @@ let server = require('../server');
 let should = chai.should();
 
 chai.use(chaiHttp);
-//Our parent block
 describe('Books', () => {
     beforeEach((done) => { //Before each test we empty the database
-        Book.deleteOne({}, (err) => {
+        Book.deleteMany({}, (err) => {
            done();
         });
     });
-/*
-  * Test the /GET route
-  */
+
+
   describe('/GET book', () => {
       it('it should GET all the books', (done) => {
         chai.request(server)
@@ -123,9 +121,7 @@ describe('Books', () => {
       });
   });
 
- /*
-  * Test the /DELETE/:id route
-  */
+
   describe('/DELETE/:id book', () => {
       it('it should DELETE a book given the id', (done) => {
           let book = new Book({title: "The Chronicles of Narnia", authorFirst: "C.S.", authorLast: "Lewis", publishedYear: 1948, length: 778})

@@ -3,7 +3,7 @@ const Book = require("../models/Book");
 
 router.get("/:title", (req, res) => {
   Book.find({title: {$regex: req.params.title}}, (err, book) => {
-      if(err) next(err);
+      if(err) res.send(err);
       res.json(book);
   });
 });

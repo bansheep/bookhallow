@@ -18,7 +18,7 @@ router.get("/", auth, (req, res) => {
 
     console.log("User = " + userId);
     User.findById(userId, (err, foundUser) => {
-      if(err) next(err);
+      if(err) res.send(err);
 
       else if(foundUser){
           // check list names
@@ -50,14 +50,14 @@ router.post("/:listName", auth, async (req, res) => {
       let userId = verified.user;
 
       User.findById(userId, (err, foundUser) => {
-        if(err) next(err);
+        if(err) res.send(err);
 
         else if(foundUser){
            console.log(foundUser.bookLists);
 
             // check list names
             BookList.findOne({userId:userId, name:customListName}, (err, foundList) => {
-              if(err) next(err);
+              if(err) res.send(err);
 
               if(!foundList){
                 // create a new list
@@ -101,12 +101,12 @@ router.get("/:listName", auth, async (req, res) => {
       let userId = verified.user;
 
       User.findById(userId, (err, foundUser) => {
-        if(err) next(err);
+        if(err) res.send(err);
 
         else if(foundUser){
             // check list names
             BookList.findById(customListName, (err, foundList) => {
-              if(err) next(err);
+              if(err) res.send(err);
 
               if(!foundList){
                   console.log("Book list does not exist");

@@ -50,7 +50,7 @@ router.post("/", async (req,res) => {
   }
   catch(err){
     res.status(500).send();
-    next(err);
+    res.send(err);
   }
 });
 
@@ -82,7 +82,7 @@ router.post("/login", async (req, res) => {
   }
   catch(err){
     res.status(500).send();
-    next(err);
+    res.send(err);
   }
 
 });
@@ -105,14 +105,14 @@ router.get("/loggedIn", (req, res) => {
       res.send(true);
     } catch (err) {
       res.json(false);
-      next(err);
+      res.send(err);
     }
   }
 );
 
 router.get("/:id", (req,res) => {
   User.findById(req.params.id, (err, user) => {
-      if(err)next(err);
+      if(err)res.send(err);
       else res.json(user);
   });
 
@@ -121,7 +121,7 @@ router.get("/:id", (req,res) => {
 router.get("/", (req,res) => {
   let query = User.find({});
   query.exec((err, users) => {
-      if(err) next(err);
+      if(err) res.send(err);
       else res.json(users);
   });
 });

@@ -17,7 +17,7 @@ router.post("/", async(req, res) => {
     var newBook = new Book(req.body);
     //Save it into the DB.
     newBook.save((err,book) => {
-        if(err) next(err);
+        if(err) res.send(err);
         else res.json({message: "Book successfully added!", book });
     });
 });
@@ -25,7 +25,7 @@ router.post("/", async(req, res) => {
 // GET /book/:id route to retrieve a book given its id.
 router.get("/:id", (req, res) => {
     Book.findById(req.params.id, (err, book) => {
-        if(err) next(err);
+        if(err) res.send(err);
         else res.json(book);
     });
 });
@@ -40,9 +40,9 @@ router.delete("/:id", (req, res) => {
 // PUT /book/:id to updatea a book given its id
 router.put("/:id", (req, res) => {
     Book.findById({_id: req.params.id}, (err, book) => {
-        if(err) next(err);
+        if(err) res.send(err);
         Object.assign(book, req.body).save((err, book) => {
-            if(err) next(err);
+            if(err) res.send(err);
             res.json({ message: 'Book updated!', book });
         });
     });

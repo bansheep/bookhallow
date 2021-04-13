@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
 //get all books
-router.get("/", auth, (req, reS) => {
+router.get("/", auth, (req, res) => {
   try{
     const token = req.cookies.token;
     if (!token) return res.json(false);
@@ -18,7 +18,7 @@ router.get("/", auth, (req, reS) => {
     let userId = verified.user;
 
     User.findById(userId, (err, foundUser) => {
-      if(err) next(err);
+      if(err) res.send(err);
 
       else if(foundUser){
           // check list names
@@ -27,7 +27,7 @@ router.get("/", auth, (req, reS) => {
           else{
             for( var book = 0; book < foundUser.books.length; book++){
               Book.findById(foundUser.books[book], (err, foundBook) => {
-                  if(err) next(err);
+                  if(err) res.send(err);
                   if(foundList) res.json(foundBook.title);
                 });
               }
@@ -55,12 +55,12 @@ router.post("/:listName/:bookName", auth, async (req, res) => {
       let userId = verified.user;
 
       User.findById(userId, (err, foundUser) => {
-        if(err) next(err);
+        if(err) res.send(err);
 
         else if(foundUser){
             // check list names
             BookList.findOne({userId:userId, name:customListName}, (err, foundList) => {
-              if(err) next(err);
+              if(err) res.send(err);
 
               if(!foundList){
                 // create a new list
@@ -76,7 +76,7 @@ router.post("/:listName/:bookName", auth, async (req, res) => {
               }
               else{
                 Book.findOne({title:bookName}, (err, book) => {
-                  if(err) next(err);
+                  if(err) res.send(err);
 
                   if(!book) console.log("Book is not in the database")
 
@@ -93,12 +93,10 @@ router.post("/:listName/:bookName", auth, async (req, res) => {
                     newUserBook.lists.push(foundList._id);
                     newUserBook.save();
 
-
                     foundList.books.push(newUserBook._id);
                     foundList.save();
                   }
                 });
-
               }
           });
         }
@@ -108,7 +106,6 @@ router.post("/:listName/:bookName", auth, async (req, res) => {
     }
 
 });
-
 
 // get one book from books[]
 router.get("/:id", auth, async (req, res) => {
@@ -125,12 +122,12 @@ router.get("/:id", auth, async (req, res) => {
       let userId = verified.user;
 
       User.findById(userId, (err, foundUser) => {
-        if(err) next(err);
+        if(err) res.send(err);
 
         else if(foundUser){
             // check list names
             UserBook.findById(id, (err, foundBook) => {
-              if(err) next(err);
+              if(err) res.send(err);
 
               if(!foundBook){
                   console.log("UserBook " + id +  " does not exist");
