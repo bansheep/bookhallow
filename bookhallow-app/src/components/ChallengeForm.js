@@ -101,8 +101,6 @@ function CreateChallenge(){
             </Form.Group>
           </fieldset>
 
-
-
           <div align="center">
           <Form.Group id="formGridCheckbox" >
             <Form.Check type="checkbox" label="Private Challenge" />
