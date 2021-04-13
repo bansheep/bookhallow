@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import AuthContext from "../context/AuthContext";
 import Button from 'react-bootstrap/Button';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 import axios from "axios";
 
 
@@ -33,9 +35,16 @@ function Header(){
 
   return(
     <div>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className="justify-content-between" fixed="top">
         <Navbar.Brand href="#home">Bookhallow</Navbar.Brand>
-        <Nav className="mr-auto">
+
+
+        <Form inline onSubmit={search}  onChange={(e) => setBookInfo(e.target.value)}>
+          <FormControl type="text" placeholder="Book Title" className="mr-sm-2" />
+          <Button variant="outline-warning" type="submit" >Search</Button>
+        </Form>
+
+        <Nav className="mr-sm-2 ">
           {loggedIn === false &&
               <>
               <Nav.Link href={"/register"}>Register</Nav.Link>
@@ -45,17 +54,18 @@ function Header(){
 
           {loggedIn === true &&
             <>
-            <Nav.Link href={"/book_list_page"}>Book Lists</Nav.Link>
-            <Nav.Link href={"/account"}>Account</Nav.Link>
-            <Nav.Link href={"/logout"}>Logout</Nav.Link>
+            <DropdownButton
+            id="dropdown-basic-button"
+            title="Account"
+            variant="outline-warning">
+              <Dropdown.Item href={"/account"}>Account</Dropdown.Item>
+              <Dropdown.Item href={"/book_list_page"}>Book Lists</Dropdown.Item>
+              <Dropdown.Item href={"/challenge_form"}>Create Challenge</Dropdown.Item>
+              <Dropdown.Item href={"/logout"}>Logout</Dropdown.Item>
+            </DropdownButton>
             </>
             }
         </Nav>
-
-        <Form inline onSubmit={search}  onChange={(e) => setBookInfo(e.target.value)}>
-          <FormControl type="text" placeholder="Book Title" className="mr-sm-2" />
-          <Button variant="outline-info" type="submit" >Search</Button>
-        </Form>
       </Navbar>
     </div>
   );
