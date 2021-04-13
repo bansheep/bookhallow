@@ -4,11 +4,12 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import Logout from "./components/Logout"
-import Account from "./components/Account"
-import BookListPage from "./components/BookListPage"
-import Book from "./components/Book"
-import AuthContext, {AuthContextProvider} from "./context/AuthContext"
+import Logout from "./components/Logout";
+import Account from "./components/Account";
+import BookListPage from "./components/BookListPage";
+import Book from "./components/Book";
+import ChallengeForm from "./components/ChallengeForm";
+import AuthContext, {AuthContextProvider} from "./context/AuthContext";
 
 function Router() {
   const {loggedIn} = useContext(AuthContext);
@@ -37,6 +38,7 @@ function Router() {
             <Route path="/book_list_page" component={BookListPage}/>
             <Route path="/account" component={Account}/>
             <Route path="/logout" component={Logout}/>
+            <Route path="/challenge_form" component={ChallengeForm}/>
             </>
           )
         }
