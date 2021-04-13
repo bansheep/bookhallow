@@ -2,11 +2,11 @@ import React from "react";
 import Table from 'react-bootstrap/Table'
 
 function AllBookLists(){
-  
+
 // TODO: Import axios and populate with user book lists
 
   return (
-  <div>
+  <div className="bookListDiv">
   <h1 className="Headline">Book Lists</h1>
   <Table hover>
     <tbody>

@@ -54,7 +54,7 @@ async function getBook(bookId){
   },[]);
 
   return (
-    <div>
+    <div className="bookListDiv">
     <h1 className="Headline">{bookList.name} Book List</h1>
 
     <Table responsive="sm"  hover>

@@ -104,9 +104,33 @@
     /* background-image: linear-gradient(#1e344b, #0F1822); */
     background-color:  #ffffff;
     position: relative;
+    padding-top: 100px;
     width: 100%;
     height: 540px;
 }
+
+.bookListDiv {
+  background-color:  #ffffff;
+  position: relative;
+  padding-top:75px;
+}
+
+.challengeFormDiv {
+  background-color:  #ffffff;
+  position: relative;
+  padding-top: 100px;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.challengeContainer {
+    position: relative;
+    padding-top: 75px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
 
 .divTownship {
     background-image: url(images/Town.png);
