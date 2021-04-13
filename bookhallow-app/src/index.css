@@ -109,6 +109,12 @@
     height: 540px;
 }
 
+.bookListDiv {
+  background-color:  #ffffff;
+  position: relative;
+  padding-top:75px;
+}
+
 .challengeFormDiv {
   background-color:  #ffffff;
   position: relative;

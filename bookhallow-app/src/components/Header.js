@@ -35,13 +35,13 @@ function Header(){
 
   return(
     <div>
-      <Navbar bg="dark" variant="dark" className="justify-content-between" fixed="top">
+      <Navbar  variant="dark " className="navbar-custom justify-content-between " fixed="top">
         <Navbar.Brand href="#home">Bookhallow</Navbar.Brand>
 
 
         <Form inline onSubmit={search}  onChange={(e) => setBookInfo(e.target.value)}>
           <FormControl type="text" placeholder="Book Title" className="mr-sm-2" />
-          <Button variant="outline-warning" type="submit" >Search</Button>
+          <Button variant="outline-secondary" type="submit" >Search</Button>
         </Form>
 
         <Nav className="mr-sm-2 ">
@@ -57,10 +57,10 @@ function Header(){
             <DropdownButton
             id="dropdown-basic-button"
             title="Account"
-            variant="outline-warning">
+            variant="outline-light">
               <Dropdown.Item href={"/account"}>Account</Dropdown.Item>
               <Dropdown.Item href={"/book_list_page"}>Book Lists</Dropdown.Item>
-              <Dropdown.Item href={"/challenge_form"}>Create Challenge</Dropdown.Item>
+              <Dropdown.Item href={"/challenge_form"}>Challenges</Dropdown.Item>
               <Dropdown.Item href={"/logout"}>Logout</Dropdown.Item>
             </DropdownButton>
             </>

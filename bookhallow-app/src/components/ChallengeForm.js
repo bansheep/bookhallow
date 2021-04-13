@@ -36,7 +36,7 @@ function CreateChallenge(){
   return(
     <div>
         <div className="challengeFormDiv">
-        <h3 className="mainSubTitle">Create Your New Challenge</h3>
+        <h3 className="mainSubTitleLight challengeContainer">Create Your New Reading Challenge</h3>
 
 
         <Form onSubmit={newChallenge}>
@@ -56,10 +56,7 @@ function CreateChallenge(){
               Description
             </Form.Label>
             <Col sm="10">
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="5" />
+              <Form.Control as="textarea" rows={3} />
             </Col>
           </Form.Group>
 
@@ -79,40 +76,39 @@ function CreateChallenge(){
               <Form.Label as="legend" column sm={2}>
                 Type of Challenge
               </Form.Label>
-              
+
               <Col sm={10}>
                 <Form.Check
+
                   type="radio"
                   label="Number of Books"
                   name="formHorizontalRadios"
-                  id="formHorizontalRadios1"
+                  id="numBooks"
                 />
                 <Form.Check
                   type="radio"
                   label="Bingo"
                   name="formHorizontalRadios"
-                  id="formHorizontalRadios2"
+                  id="bingo"
                 />
                 <Form.Check
                   type="radio"
                   label="Series"
                   name="formHorizontalRadios"
-                  id="formHorizontalRadios3"
+                  id="series"
                 />
               </Col>
             </Form.Group>
           </fieldset>
 
 
-          <div className="challengeContainer">
 
-          <Form.Group id="formGridCheckbox">
+          <div align="center">
+          <Form.Group id="formGridCheckbox" >
             <Form.Check type="checkbox" label="Private Challenge" />
           </Form.Group>
-
-          <Button variant="dark" type="submit"> Create New Challenge </Button>
+          <Button variant="dark" type="submit" > Create New Challenge </Button>
           </div>
-
         </Form>
         </div>
 
