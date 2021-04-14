@@ -7,6 +7,7 @@ const auth = require("../middleware/auth");
 //get all lists
 router.get("/", auth, (req, res) => {
   try{
+    
     const token = req.cookies.token;
     if (!token) return res.json(false);
 

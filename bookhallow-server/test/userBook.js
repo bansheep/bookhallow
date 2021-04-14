@@ -14,37 +14,52 @@ chai.use(chaiHttp);
 
 describe('User Books', () => {
 
+  before((done) => {
+    let newUser = {
+      username: "userbooktest",
+      email: "userbooktest@email.com",
+      password: "123456789",
+      passwordVerify: "123456789"
+    }
+    chai.request(server)
+      .post('/auth')
+      .send(newUser)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+
   beforeEach((done) => {
-           console.log("Before test");
+     let user = {
+       username: "userbooktest",
+       password: "123456789"
+     }
 
-           let newUser = new User({
-             username: "userbooktest",
-             email: "userbooktest@email.com",
-             password: "123456789",
-             passwordVerify: "123456789"
-           });
-           newUser.save();
+     chai.request(server)
+         .post('/auth/login')
+         .send(user)
+         .end(function(err, res) {
+             res.should.have.status(200);
+             done();
+         });
+  });
 
-           let user = {
-             username: "userbooktest",
-             password: "123456789"
-           }
+  afterEach((done) => {
+    chai.request(server)
+        .post('auth/logout')
+        .end((err, res) => {
+          done();
+        });
+  })
 
-           chai.request(server)
-               .post('/auth/login/')
-               .send(user)
-               .end(function(err, res) {
-                   if(err) res.send(err);
-                   else res.should.have.status(200);
-                   done();
-               });
-       });
+   after(function() {
+       User.deleteOne({username: 'userbooktest'}, function(){});
+   });
 
-       afterEach(function() {
-           User.remove({username: 'userbooktest'}, function(){});
-       });
+  describe('/POST userBook', () => {
 
-  describe('/GET userBook', () => {
     it('it should create a book list', (done) => {
       chai.request(server)
         .post('/booklist/testList')

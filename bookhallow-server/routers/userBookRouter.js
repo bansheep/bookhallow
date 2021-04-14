@@ -21,18 +21,13 @@ router.get("/", auth, (req, res) => {
       if(err) res.send(err);
 
       else if(foundUser){
-          // check list names
-          if(foundUser.books.length === 0) console.log("No books yet!")
-
-          else{
-            for( var book = 0; book < foundUser.books.length; book++){
-              Book.findById(foundUser.books[book], (err, foundBook) => {
-                  if(err) res.send(err);
-                  if(foundList) res.json(foundBook.title);
-                });
-              }
-            }
+        for( var book = 0; book < foundUser.books.length; book++){
+          Book.findById(foundUser.books[book], (err, foundBook) => {
+              if(err) res.send(err);
+              if(foundList) res.json(foundBook.title);
+            });    
         }
+      }
     });
   } catch(err){
     res.status(401).json({errorMessage: "Unauthorized"});
