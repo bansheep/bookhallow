@@ -9,6 +9,7 @@ import Account from "./components/Account";
 import BookListPage from "./components/BookListPage";
 import Book from "./components/Book";
 import ChallengeForm from "./components/ChallengeForm";
+import ChooseCharacter from "./components/ChooseCharacter";
 import AuthContext, {AuthContextProvider} from "./context/AuthContext";
 
 function Router() {
@@ -39,6 +40,7 @@ function Router() {
             <Route path="/account" component={Account}/>
             <Route path="/logout" component={Logout}/>
             <Route path="/challenge_form" component={ChallengeForm}/>
+            <Route path="/choose_character" component={ChooseCharacter}/>
             </>
           )
         }

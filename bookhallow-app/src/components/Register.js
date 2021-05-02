@@ -27,7 +27,7 @@ function Register(){
 
       await axios.post("http://localhost:5000/auth/", newAccount);
       await getLoggedIn();
-      await history.push("/account");
+      await history.push("/choose_character");
     }
     catch(err){ console.error(err); }
   }

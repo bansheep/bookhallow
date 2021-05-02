@@ -1,0 +1,40 @@
+Setting up the project:
+
+Items to install:
+
+1. Git
+2. Hyper (optional)
+2.a Hyper settings
+3. Atom/VS Code (optional)
+3.a Atom packages:
+3.b VS Code packages:
+4.MongoDB
+4.a Install
+4.b Update ~/.bash_profile
+4.c Create a data/db folder for the database
+5. Postman (or similar)
+6. Robo 3T
+7. Nodemon "npm install -g nodemon"
+
+Setting up project
+Create a project folder
+In project folder clone repo from GitLab
+* An SSH key may need to be created and added to GitLab, instructions on GitLab
+
+Change into bookhallow-server, run "npm i"
+Change into bookhallow-app, run "npm i"
+*May need to run "npm audit fix" after installing
+
+To run project
+Open up terminal, have 3 tabs
+In the first tab, if project is not already open in editor, navigate to outer folder
+"atom bookhallow" will open the project in Atom
+
+In one tab, run "mongod"
+In another tab, navigate to bookhallow-server, run npm start
+In the remaining tab, naviate to bookhallow-app, run npm start
+*If any npm packages did not properly install, or if additional dependencies are required, error(s) will appear
+ 
+ 
+If running on new computer, the JWT SECRET KEY does not travel with GitLab code. 
+This will need to be acquired from JLW, or if using database for testing purposes only, a secret key can be generated

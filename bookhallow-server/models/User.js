@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
      default: []
    },
 
-   character: [{
+   character: {
      classType: {
        type: String,
        default: "Unknown"
@@ -42,8 +42,12 @@ const userSchema = new mongoose.Schema({
      health: {
        type: Number,
        default: 50
+     },
+     skills: {
+       type: [String],
+       default: []
      }
-   }]
+   }
 });
 
 

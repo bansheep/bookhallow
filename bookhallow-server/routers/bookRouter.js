@@ -37,7 +37,7 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-// PUT /book/:id to updatea a book given its id
+// PUT /book/:id to update a book given its id
 router.put("/:id", (req, res) => {
     Book.findById({_id: req.params.id}, (err, book) => {
         if(err) res.send(err);
