@@ -11,17 +11,16 @@ function ChooseCharacter(){
 
         <Row>
           <Col>
-            <ChooseCharCard class="Warrior"/>
+            <ChooseCharCard classType="Warrior"/>
           </Col>
           <Col>
-            <ChooseCharCard class="Healer"/>
+            <ChooseCharCard classType="Healer"/>
           </Col>
           <Col>
-            <ChooseCharCard class="Sorcerer"/>
+            <ChooseCharCard classType="Sorcerer"/>
           </Col>
         </Row>
         </div>
-
 
     </div>
   );

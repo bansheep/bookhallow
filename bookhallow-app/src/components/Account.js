@@ -1,13 +1,30 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import CharCard from "./CharCard";
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from "axios";
 
 function Account(){
+  const[character, setCharacter] = useState( {
+    classType: "",
+    level: 0,
+    experience: 0,
+    health: 0,
+    skills: []
+  });
 
-axios.get("http://localhost:5000/book/60445351945c2735c61cabb6")
-      .then(res => res.data)
-      .catch(err => console.error(err));
+
+  async function getCharacterInfo(){
+    await axios.get("http://localhost:5000/auth/character")
+               .then(res => {
+                 console.log("getCharacterInfo()");
+                 console.log(res.data);
+                 setCharacter(res.data);
+               });
+  }
+
+  useEffect(()=>{
+    getCharacterInfo();
+  },[]);
 
   return (
   <div>
@@ -15,7 +32,7 @@ axios.get("http://localhost:5000/book/60445351945c2735c61cabb6")
       <div className="row">
 
         <div className="col-sm">
-          <CharCard />
+          <CharCard classType={character.classType}/>
         </div>
 
         <div className="col-6 col-sm">

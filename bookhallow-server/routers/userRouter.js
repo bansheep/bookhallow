@@ -127,7 +127,7 @@ router.get("/", (req,res) => {
 });
 
 
-router.post("/choose_character", (req, res) => {
+router.post("/choose_character", async (req, res) => {
   try{
     const token = req.cookies.token;
     if (!token) return res.json(false);
@@ -142,20 +142,47 @@ router.post("/choose_character", (req, res) => {
       if(err) res.send(err);
 
       else if(foundUser){
-          foundUser.character.push(req.body);
+          foundUser.character = req.body;
           foundUser.save()
-          .then()
+          .then(console.log(foundUser.character))
           .catch(err => {
            res.status(500).json({
               errors: [{ error: err }]
             })
-           });
+          });
+
         }
     });
   } catch(err){
     res.status(401).json({errorMessage: "Unauthorized"});
   }
 
+});
+
+router.get("/character",  async (req, res) => {
+  console.log("router get character?");
+  try{
+    const token = req.cookies.token;
+    if (!token) return res.json(false);
+
+    // compares token to JWT_SECRET, if no then throws error
+    // the decoded payload of the JWT is put into verified
+    // verified.user holds the user's id
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    let userId = verified.user;
+
+    User.findById(userId, (err, foundUser) => {
+      if(err) res.send(err);
+
+      else if(foundUser){
+          console.log(foundUser);
+          res.json(foundUser);
+          res.send(foundUser.character);
+      }
+    });
+  } catch(err){
+    res.status(401).json({errorMessage: "Unauthorized"});
+  }
 });
 
 module.exports = router;
