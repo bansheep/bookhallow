@@ -12,17 +12,17 @@ import Default from "../images/Character.png"
 function CharCard(props){
   return(
     <div>
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '15rem' }}>
         <Card.Img variant="top"
                   src={props.classType === "Warrior" ? Warrior :
                                     (props.classType === "Healer" ? Healer :
                                     (props.classType === "Sorcerer"? Sorcerer : Default))}
                   alt="Character" />
         <Card.Body>
-          <Card.Title>{props.classType}</Card.Title>
+          <Card.Title>Class: {props.classType}</Card.Title>
           <ProgressBar now={60} />
           <Card.Text>
-            {props.classType}
+            Information about the character would be here.
           </Card.Text>
         </Card.Body>
       </Card>

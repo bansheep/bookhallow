@@ -18,19 +18,11 @@ function CharCard(props){
   async function charSelect(event){
     event.preventDefault();
 
-    const character = props.classType;
+    const newCharacter = props.classType;
 
-    // {
-    //   classType: props.classType,
-    //   level: 0,
-    //   experience: 0,
-    //   health: 100,
-    //   skills: []
-    // };
-
-   // Need to look into await for the axios.post command
-   axios.post("http://localhost:5000/auth/choose_character", character);
-   await history.push("/account");
+    // Need to look into await for the axios.post command
+    await axios.post("http://localhost:5000/auth/choose_character", {character: newCharacter});
+    await history.push("/account");
 
   }
 

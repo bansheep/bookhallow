@@ -4,7 +4,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from "axios";
 
 function Account(){
-  const[character, setCharacter] = useState("");
+  const[user, setUser] = useState({});
 
 
   async function getCharacterInfo(){
@@ -13,7 +13,7 @@ function Account(){
                  console.log("getCharacterInfo()");
                  const data = res.data;
                  console.log(data);
-                 setCharacter(data.character);
+                 setUser(data);
                });
   }
 
@@ -27,7 +27,7 @@ function Account(){
       <div className="row">
 
         <div className="col-sm">
-          <CharCard classType={character}/>
+          <CharCard classType={user.character}/>
         </div>
 
         <div className="col-6 col-sm">

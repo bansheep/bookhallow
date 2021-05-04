@@ -26,10 +26,19 @@ function Register(){
        };
 
       await axios.post("http://localhost:5000/auth/", newAccount);
-      await getLoggedIn();
-      await history.push("/choose_character");
-    }
-    catch(err){ console.error(err); }
+      const loggedIn = await getLoggedIn();
+      if(!loggedIn){
+        const loginData = {
+          username,
+          password,
+        };
+        await axios.post("http://localhost:5000/auth/login", loginData);}
+
+
+    }    catch(err){ console.error(err); }
+
+    await history.push("/choose_character");
+
   }
 
   return(
