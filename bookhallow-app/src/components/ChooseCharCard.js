@@ -18,16 +18,18 @@ function CharCard(props){
   async function charSelect(event){
     event.preventDefault();
 
-    const character = {
-      classType: props.class,
-      level: 0,
-      experience: 0,
-      health: 100,
-      skills: []
-    };
+    const character = props.classType;
 
-   await axios.post("http://localhost:5000/auth/choose_character", character);
+    // {
+    //   classType: props.classType,
+    //   level: 0,
+    //   experience: 0,
+    //   health: 100,
+    //   skills: []
+    // };
 
+   // Need to look into await for the axios.post command
+   axios.post("http://localhost:5000/auth/choose_character", character);
    await history.push("/account");
 
   }
@@ -35,11 +37,11 @@ function CharCard(props){
   return(
     <div>
       <Card style={{ width: '12rem' }}>
-        <Card.Img variant="top" src={props.class === "Warrior" ? Warrior: (props.class === "Healer" ? Healer: Sorcerer)} alt="Character" />
+        <Card.Img variant="top" src={props.classType === "Warrior" ? Warrior: (props.classType === "Healer" ? Healer: Sorcerer)} alt="Character" />
         <Card.Body>
-          <Card.Title>{props.class}</Card.Title>
+          <Card.Title>{props.classType}</Card.Title>
           <Form onSubmit={charSelect}>
-          <Button variant="dark" type="submit"> Choose me! </Button>
+            <Button variant="dark" type="submit"> Choose me! </Button>
           </Form>
         </Card.Body>
       </Card>

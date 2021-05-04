@@ -138,20 +138,14 @@ router.post("/choose_character", async (req, res) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     let userId = verified.user;
 
-    User.findById(userId, (err, foundUser) => {
-      if(err) res.send(err);
+    const charUpdate = req.body;
 
-      else if(foundUser){
-          foundUser.character = req.body;
-          foundUser.save()
-          .then(console.log(foundUser.character))
-          .catch(err => {
-           res.status(500).json({
-              errors: [{ error: err }]
-            })
-          });
+    User.findOneAndUpdate({_id: userId}, charUpdate, err => {
+    if(err) res.send(err);
 
-        }
+    else{
+      res.json("updated!");
+    }
     });
   } catch(err){
     res.status(401).json({errorMessage: "Unauthorized"});
@@ -159,30 +153,42 @@ router.post("/choose_character", async (req, res) => {
 
 });
 
-router.get("/character",  async (req, res) => {
-  console.log("router get character?");
-  try{
-    const token = req.cookies.token;
-    if (!token) return res.json(false);
-
-    // compares token to JWT_SECRET, if no then throws error
-    // the decoded payload of the JWT is put into verified
-    // verified.user holds the user's id
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
-    let userId = verified.user;
-
-    User.findById(userId, (err, foundUser) => {
+router.get("/character",  (req, res) => {
+  let query = User.find({});
+  query.exec((err, users) => {
       if(err) res.send(err);
-
-      else if(foundUser){
-          console.log(foundUser);
-          res.json(foundUser);
-          res.send(foundUser.character);
-      }
-    });
-  } catch(err){
-    res.status(401).json({errorMessage: "Unauthorized"});
-  }
+      else res.json(users);
+  });
+  // const token = req.cookies.token;
+  // if (!token) return res.json(false);
+  //
+  // // compares token to JWT_SECRET, if no then throws error
+  // // the decoded payload of the JWT is put into verified
+  // // verified.user holds the user's id
+  // const verified = jwt.verify(token, process.env.JWT_SECRET);
+  // res.json("router get character");
+  // try{
+  //   const token = req.cookies.token;
+  //   if (!token) return res.json(false);
+  //
+  //   // compares token to JWT_SECRET, if no then throws error
+  //   // the decoded payload of the JWT is put into verified
+  //   // verified.user holds the user's id
+  //   const verified = jwt.verify(token, process.env.JWT_SECRET);
+  //
+  //   let userId = verified.user;
+  //
+  //   User.findById(userId, (err, foundUser) => {
+  //     if(err) res.send(err);
+  //
+  //     else{
+  //         console.log(foundUser);
+  //         res.json(foundUser);
+  //     }
+  //   });
+  // } catch(err){
+  //   res.status(401).json({errorMessage: "Unauthorized"});
+  // }
 });
 
 module.exports = router;

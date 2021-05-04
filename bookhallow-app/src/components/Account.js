@@ -4,21 +4,16 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from "axios";
 
 function Account(){
-  const[character, setCharacter] = useState( {
-    classType: "",
-    level: 0,
-    experience: 0,
-    health: 0,
-    skills: []
-  });
+  const[character, setCharacter] = useState("");
 
 
   async function getCharacterInfo(){
     await axios.get("http://localhost:5000/auth/character")
                .then(res => {
                  console.log("getCharacterInfo()");
-                 console.log(res.data);
-                 setCharacter(res.data);
+                 const data = res.data;
+                 console.log(data);
+                 setCharacter(data.character);
                });
   }
 
@@ -32,7 +27,7 @@ function Account(){
       <div className="row">
 
         <div className="col-sm">
-          <CharCard classType={character.classType}/>
+          <CharCard classType={character}/>
         </div>
 
         <div className="col-6 col-sm">
