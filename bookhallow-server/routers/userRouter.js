@@ -3,6 +3,66 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+
+
+router.get("/character",  (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.json(false);
+
+  // compares token to JWT_SECRET, if no then throws error
+  // the decoded payload of the JWT is put into verified
+  // verified.user holds the user's id
+  const verified = jwt.verify(token, process.env.JWT_SECRET);
+  res.json("router get character");
+  try{
+    const token = req.cookies.token;
+    if (!token) return res.json(false);
+
+    // compares token to JWT_SECRET, if no then throws error
+    // the decoded payload of the JWT is put into verified
+    // verified.user holds the user's id
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+
+    let userId = verified.user;
+
+    User.findById(userId, (err, foundUser) => {
+      if(err) res.send(err);
+
+      else{
+          console.log(foundUser);
+          res.json(foundUser);
+      }
+    });
+  } catch(err){
+    res.status(401).json({errorMessage: "Unauthorized"});
+  }
+});
+
+router.post("/choose_character", async (req, res) => {
+  try{
+    const token = req.cookies.token;
+    if (!token) return res.json(false);
+
+    // compares token to JWT_SECRET, if no then throws error
+    // the decoded payload of the JWT is put into verified
+    // verified.user holds the user's id
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    let userId = verified.user;
+
+    const charUpdate = req.body;
+
+    User.findOneAndUpdate({_id: userId}, charUpdate, err => {
+    if(err) res.send(err);
+
+    else{
+      res.json("updated!");
+    }
+    });
+  } catch(err){
+    res.status(401).json({errorMessage: "Unauthorized"});
+  }
+
+});
 // Register!
 router.post("/", async (req,res) => {
   try{
@@ -53,7 +113,6 @@ router.post("/", async (req,res) => {
     res.send(err);
   }
 });
-
 
 // Login
 router.post("/login", async (req, res) => {
@@ -107,8 +166,7 @@ router.get("/loggedIn", (req, res) => {
       res.json(false);
       res.send(err);
     }
-  }
-);
+});
 
 router.get("/:id", (req,res) => {
   User.findById(req.params.id, (err, user) => {
@@ -126,69 +184,5 @@ router.get("/", (req,res) => {
   });
 });
 
-
-router.post("/choose_character", async (req, res) => {
-  try{
-    const token = req.cookies.token;
-    if (!token) return res.json(false);
-
-    // compares token to JWT_SECRET, if no then throws error
-    // the decoded payload of the JWT is put into verified
-    // verified.user holds the user's id
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
-    let userId = verified.user;
-
-    const charUpdate = req.body;
-
-    User.findOneAndUpdate({_id: userId}, charUpdate, err => {
-    if(err) res.send(err);
-
-    else{
-      res.json("updated!");
-    }
-    });
-  } catch(err){
-    res.status(401).json({errorMessage: "Unauthorized"});
-  }
-
-});
-
-router.get("/character",  (req, res) => {
-  let query = User.find({});
-  query.exec((err, users) => {
-      if(err) res.send(err);
-      else res.json(users);
-  });
-  // const token = req.cookies.token;
-  // if (!token) return res.json(false);
-  //
-  // // compares token to JWT_SECRET, if no then throws error
-  // // the decoded payload of the JWT is put into verified
-  // // verified.user holds the user's id
-  // const verified = jwt.verify(token, process.env.JWT_SECRET);
-  // res.json("router get character");
-  // try{
-  //   const token = req.cookies.token;
-  //   if (!token) return res.json(false);
-  //
-  //   // compares token to JWT_SECRET, if no then throws error
-  //   // the decoded payload of the JWT is put into verified
-  //   // verified.user holds the user's id
-  //   const verified = jwt.verify(token, process.env.JWT_SECRET);
-  //
-  //   let userId = verified.user;
-  //
-  //   User.findById(userId, (err, foundUser) => {
-  //     if(err) res.send(err);
-  //
-  //     else{
-  //         console.log(foundUser);
-  //         res.json(foundUser);
-  //     }
-  //   });
-  // } catch(err){
-  //   res.status(401).json({errorMessage: "Unauthorized"});
-  // }
-});
 
 module.exports = router;
