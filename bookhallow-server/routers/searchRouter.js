@@ -1,3 +1,5 @@
+// look into using http://autocomplete-js.com/
+
 const router = require("express").Router();
 const Book = require("../models/Book");
 
