@@ -12,6 +12,8 @@ function CreateChallenge(){
   const[challengeName, setChallengeName] = useState("");
   const[challengeDesc, setDesc] = useState("");
   const[challengeEndDate, setDate] = useState([""]);
+  const[challengeType, setType] = useState("");
+  const[challengePrivate, setPrivate] = useState(false);
   //const[challengeBooks, setBooks] = useState([""]);
 
   const {getLoggedIn} = useContext(AuthContext);
@@ -23,10 +25,14 @@ function CreateChallenge(){
 
      try{
        const newChallenge = {
-
+         name: challengeName,
+         description: challengeDesc,
+         endDate: challengeEndDate,
+         type: challengeType,
+         private: challengePrivate
        };
 
-      await axios.post("http://localhost:5000/auth/", newChallenge._id);
+      await axios.post("http://localhost:5000/auth/challenge", newChallenge);
       await getLoggedIn();
       await history.push("/account");
     }
@@ -84,18 +90,21 @@ function CreateChallenge(){
                   label="Number of Books"
                   name="formHorizontalRadios"
                   id="numBooks"
+                  onChange={(e) => setType("Number of Books")}
                 />
                 <Form.Check
                   type="radio"
                   label="Bingo"
                   name="formHorizontalRadios"
                   id="bingo"
+                  onChange={(e) => setType("Bingo")}
                 />
                 <Form.Check
                   type="radio"
                   label="Series"
                   name="formHorizontalRadios"
                   id="series"
+                  onChange={(e) => setType("Series")}
                 />
               </Col>
             </Form.Group>
@@ -103,7 +112,8 @@ function CreateChallenge(){
 
           <div align="center">
           <Form.Group id="formGridCheckbox" >
-            <Form.Check type="checkbox" label="Private Challenge" />
+            <Form.Check type="checkbox" label="Private Challenge"
+              onChange={(e) => setPrivate(!challengePrivate)}/>
           </Form.Group>
           <Button variant="dark" type="submit" > Create New Challenge </Button>
           </div>

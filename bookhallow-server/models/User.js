@@ -29,6 +29,25 @@ const userSchema = new mongoose.Schema({
    character: {
      type: String,
      default: "UNKNOWN"
+   },
+
+   challenge: {
+     name: {
+       type: String,
+       default: ""
+     },
+     description: {
+       type: String,
+       default: ""
+     },
+     endDate: {
+       type: Date,
+       default: ""
+     },
+     private: {
+       type: Boolean,
+       default: false
+     },
    }
 });
 

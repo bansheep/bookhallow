@@ -28,10 +28,13 @@ function CharCard(props){
 
   return(
     <div>
-      <Card style={{ width: '12rem' }}>
+      <Card style={{ width: '17rem' }}>
         <Card.Img variant="top" src={props.classType === "Warrior" ? Warrior: (props.classType === "Healer" ? Healer: Sorcerer)} alt="Character" />
         <Card.Body>
           <Card.Title>{props.classType}</Card.Title>
+          <Card.Text>
+          Artist: https://timecowboy.tumblr.com
+          </Card.Text>
           <Form onSubmit={charSelect}>
             <Button variant="dark" type="submit"> Choose me! </Button>
           </Form>

@@ -19,13 +19,39 @@ router.get("/character",  (req, res) => {
       if(err) res.send(err);
 
       else{
-          console.log(foundUser);
           res.json(foundUser);
       }
     });
   } catch(err){
     res.status(401).json({errorMessage: "Unauthorized"});
   }
+});
+
+router.post("/challenge", async (req, res) => {
+  try{
+    const token = req.cookies.token;
+    if (!token) return res.json(false);
+
+    // compares token to JWT_SECRET, if no then throws error
+    // the decoded payload of the JWT is put into verified
+    // verified.user holds the user's id
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    let userId = verified.user;
+
+    const challengeUpdate = req.body;
+    console.log(req.body);
+
+    User.findByIdAndUpdate(userId, {challengeUpdate}, (err, docs) => {
+      if(err) res.send(err);
+
+      else{
+        res.json("updated: " + docs);
+      }
+    });
+  } catch(err){
+    res.status(401).json({errorMessage: "Unauthorized"});
+  }
+
 });
 
 // Register!
@@ -171,5 +197,8 @@ router.post("/choose_character", async (req, res) => {
   }
 
 });
+
+
+
 
 module.exports = router;

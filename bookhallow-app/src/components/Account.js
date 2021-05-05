@@ -32,7 +32,7 @@ function Account(){
 
         <div className="col-6 col-sm">
           <Jumbotron>
-            <h1 className="mainSubTitleLight">Welcome!</h1>
+            <h1 className="mainSubTitleLight">Welcome {user.username}!</h1>
             <p>This is your account page.</p>
           </Jumbotron>
         </div>

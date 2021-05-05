@@ -36,7 +36,7 @@ function Header(){
   return(
     <div>
       <Navbar  variant="dark " className="navbar-custom justify-content-between " fixed="top">
-        <Navbar.Brand href="#home">Bookhallow</Navbar.Brand>
+        <Navbar.Brand href="/">Bookhallow</Navbar.Brand>
 
 
         <Form inline onSubmit={search}  onChange={(e) => setBookInfo(e.target.value)}>

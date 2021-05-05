@@ -23,8 +23,7 @@ function Login(){
 
       await axios.post("http://localhost:5000/auth/login", loginData);
       await getLoggedIn();
-
-      history.push("/account");
+      await history.push("/account");
     }
     catch(err){ console.error(err); }
   }
